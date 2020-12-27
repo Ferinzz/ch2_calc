@@ -1,0 +1,3118 @@
+levelGraphNodeTypes = {
+            "G":{
+               "name":"Gold",
+               "tooltip":"1 Level of Gold Received. Multiplies your gold received from all sources by 110%.",
+               "tooltipFunction":Character.getStatTooltipFunction(CH2.STAT_GOLD),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_GOLD,param1);
+               },
+               "icon":"goldx3",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "Cc":{
+               "name":"Crit Chance",
+               "tooltip":"1 Level of Critical Chance. Adds 2% to your chance to score a critical hit.",
+               "tooltipFunction":Character.getStatTooltipFunctionChance(CH2.STAT_CRIT_CHANCE),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_CRIT_CHANCE,param1);
+               },
+               "icon":"critChance",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,100)
+            },
+            "Cd":{
+               "name":"Crit Damage",
+               "tooltip":"1 Level of Critical Damage. Multiplies the damage of your critical hits by 120%.",
+               "tooltipFunction":Character.getStatTooltipFunction(CH2.STAT_CRIT_DAMAGE),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_CRIT_DAMAGE,param1);
+               },
+               "icon":"critDamage",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "H":{
+               "name":"Haste",
+               "tooltip":"1 Level of Haste. Multiplies your Haste by 105%.",
+               "tooltipFunction":Character.getStatTooltipFunction(CH2.STAT_HASTE),
+               "flavorText":"Haste affects the rate that you auto-attack, and all cooldown speeds, including Automator cooldown speeds.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_HASTE,param1);
+               },
+               "icon":"haste",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "Gc":{
+               "name":"Clickable Gold",
+               "tooltip":"1 Level of Clickable Gold. Multiplies your gold received from clickables by 150%.",
+               "tooltipFunction":Character.getStatTooltipFunction(CH2.STAT_CLICKABLE_GOLD),
+               "flavorText":"If only someone could click on them before they go off the screen.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_CLICKABLE_GOLD,param1);
+               },
+               "icon":"clickableGold",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "Cl":{
+               "name":"Click Damage",
+               "tooltip":"1 Level of Click Damage. Multiplies your click damage by 110%.",
+               "tooltipFunction":Character.getStatTooltipFunction(CH2.STAT_CLICK_DAMAGE),
+               "flavorText":"This affects damage from all skills that \"click\". But it does not affect auto-attacks, because those are not \"clicks\".",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_CLICK_DAMAGE,param1);
+               },
+               "icon":"clickDamage",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "Gb":{
+               "name":"Monster Gold",
+               "tooltip":"1 Level of Monster Gold. Multiplies gold received by monsters by 120%.",
+               "tooltipFunction":Character.getStatTooltipFunction(CH2.STAT_MONSTER_GOLD),
+               "flavorText":"",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_MONSTER_GOLD,param1);
+               },
+               "icon":"bossGold",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "Ir":{
+               "name":"Item Cost Reduction",
+               "tooltip":"1 Level of Item Cost Reduction. Multiplies the gold costs of buying and leveling equipment by 0.92.",
+               "tooltipFunction":Character.getStatTooltipFunctionReduction(CH2.STAT_ITEM_COST_REDUCTION),
+               "flavorText":"Rufus sometimes wonders why he can\'t compete in the Gold market. He always felt like there was a mysterious seller undercutting him.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_ITEM_COST_REDUCTION,param1);
+               },
+               "icon":"itemCostReduction",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,100)
+            },
+            "Mt":{
+               "name":"Total Mana",
+               "tooltip":"1 Level of Total Mana. Increases your maximum mana by 25.",
+               "tooltipFunction":Character.getStatTooltipFunctionNoPercent(CH2.STAT_TOTAL_MANA),
+               "flavorText":"If a fixed amount is added to a number many times, that number is said to grow \"linearly\". This is because if you plot it out on an x/y graph, you\'ll see a line.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_TOTAL_MANA,param1);
+               },
+               "icon":"totalMana",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "Mr":{
+               "name":"Mana Regeneration",
+               "tooltip":"1 Level of Mana Regeneration. Multiplies your mana regeneration rate by 110%.",
+               "tooltipFunction":Character.getStatTooltipFunction(CH2.STAT_MANA_REGEN),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_MANA_REGEN,param1);
+               },
+               "icon":"manaRegen",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "En":{
+               "name":"Total Energy",
+               "tooltip":"1 Level of Total Energy. Increases your maximum energy by 25.",
+               "tooltipFunction":Character.getStatTooltipFunctionNoPercent(CH2.STAT_TOTAL_ENERGY),
+               "flavorText":"If a fixed amount is added to a number many times, that number is said to grow \"linearly\". This is because if you plot it out on an x/y graph, you\'ll see a line.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_TOTAL_ENERGY,param1);
+               },
+               "icon":"totalEnergy",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "Gp":{
+               "name":"Clickable Chance",
+               "tooltip":"1 Level of Gold Piles. Multiplies the number of gold piles found by 110%.",
+               "tooltipFunction":Character.getStatTooltipFunctionChance(CH2.STAT_CLICKABLE_CHANCE),
+               "flavorText":"The chance that a floating gold clickable will spawn every 5 seconds.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_CLICKABLE_CHANCE,param1);
+               },
+               "icon":"goldPiles",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,100)
+            },
+            "Bg":{
+               "name":"Bonus Gold Chance",
+               "tooltip":"1 Level of Bonus Gold Chance. Adds 1% to your chance of finding bonus gold.",
+               "tooltipFunction":Character.getStatTooltipFunctionChance(CH2.STAT_BONUS_GOLD_CHANCE),
+               "flavorText":"When killing monsters, bonus gold may appear.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_BONUS_GOLD_CHANCE,param1);
+               },
+               "icon":"goldChance",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,100)
+            },
+            "Tc":{
+               "name":"Treasure Chest Chance",
+               "tooltip":"1 Level of Treasure Chest Chance. Adds 2% to the chance that a monster happens to be a treasure chest.",
+               "tooltipFunction":Character.getStatTooltipFunctionChance(CH2.STAT_TREASURE_CHEST_CHANCE),
+               "flavorText":"Making good use of the lingering powers of a once-loathed ancient known as Thusia.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_TREASURE_CHEST_CHANCE,param1);
+               },
+               "icon":"treasureChance",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,100)
+            },
+            "Tg":{
+               "name":"Treasure Chest Gold",
+               "tooltip":"1 Level of Treasure Chest Gold. Multiplies the gold received from treasure chest monsters by 125%.",
+               "tooltipFunction":Character.getStatTooltipFunction(CH2.STAT_TREASURE_CHEST_GOLD),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_TREASURE_CHEST_GOLD,param1);
+               },
+               "icon":"treasureGold",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "I1":{
+               "name":"Equipment: Weapon",
+               "tooltip":"1 Level of Weapon Damage. Multiplies the damage you deal with weapons by 150%",
+               "tooltipFunction":Character.getStatTooltipFunction(CH2.STAT_ITEM_WEAPON_DAMAGE),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_ITEM_WEAPON_DAMAGE,param1);
+               },
+               "icon":"damageWeapon",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "I2":{
+               "name":"Equipment: Helmet",
+               "tooltip":"1 Level of Helmet Damage. Multiplies the damage you deal with helmets by 150%",
+               "tooltipFunction":Character.getStatTooltipFunction(CH2.STAT_ITEM_HEAD_DAMAGE),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_ITEM_HEAD_DAMAGE,param1);
+               },
+               "icon":"damageHead",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "I3":{
+               "name":"Equipment: Breastplate",
+               "tooltip":"1 Level of Breastplate Damage. Multiplies the damage you deal with breastplates by 150%",
+               "tooltipFunction":Character.getStatTooltipFunction(CH2.STAT_ITEM_CHEST_DAMAGE),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_ITEM_CHEST_DAMAGE,param1);
+               },
+               "icon":"damageTop",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "I4":{
+               "name":"Equipment: Ring",
+               "tooltip":"1 Level of Ring Damage. Multiplies the damage you deal with rings by 150%",
+               "tooltipFunction":Character.getStatTooltipFunction(CH2.STAT_ITEM_RING_DAMAGE),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_ITEM_RING_DAMAGE,param1);
+               },
+               "icon":"damageAccesory",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "I5":{
+               "name":"Equipment: Pants",
+               "tooltip":"1 Level of Pants Damage. Multiplies the damage you deal with pants by 150%",
+               "tooltipFunction":Character.getStatTooltipFunction(CH2.STAT_ITEM_LEGS_DAMAGE),
+               "flavorText":"Pants shouldn\'t do damage, that\'s ridiculous.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_ITEM_LEGS_DAMAGE,param1);
+               },
+               "icon":"damageLegs",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "I6":{
+               "name":"Equipment: Gloves",
+               "tooltip":"1 Level of Gloves Damage. Multiplies the damage you deal with gloves by 150%",
+               "tooltipFunction":Character.getStatTooltipFunction(CH2.STAT_ITEM_HANDS_DAMAGE),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_ITEM_HANDS_DAMAGE,param1);
+               },
+               "icon":"damageHands",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "I7":{
+               "name":"Equipment: Boots",
+               "tooltip":"1 Level of Boots Damage. Multiplies the damage you deal with boots by 150%",
+               "tooltipFunction":Character.getStatTooltipFunction(CH2.STAT_ITEM_FEET_DAMAGE),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_ITEM_FEET_DAMAGE,param1);
+               },
+               "icon":"damageFeet",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "I8":{
+               "name":"Equipment: Cape",
+               "tooltip":"1 Level of Cape Damage. Multiplies the damage you deal with capes by 150%",
+               "tooltipFunction":Character.getStatTooltipFunction(CH2.STAT_ITEM_BACK_DAMAGE),
+               "flavorText":"If you wear these in real life, people will think something is wrong with you.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_ITEM_BACK_DAMAGE,param1);
+               },
+               "icon":"damageBack",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "Mo":{
+               "name":"Mousing over Clickables",
+               "tooltip":"Collect Clickables by mousing over them instead of clicking them",
+               "flavorText":"The ancients left some of their greatest powers behind for you to discover.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+               },
+               "icon":"clickableGold"
+            },
+            "Mu":{
+               "name":"Increased MultiClicks",
+               "tooltip":"Adds 1 click to your MultiClick.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("ExtraMulticlicks",param1);
+                  CH2.currentCharacter.addTrait("TreeExtraMulticlicks",param1,true);
+               },
+               "icon":"nineClicks",
+               "upgradeable":false
+            },
+            "Bc":{
+               "name":"More Big Clicks",
+               "tooltip":"Increases the number of clicks empowered by Big Clicks by 1.",
+               "flavorText":"They march loyally behind you in unison, each one prepared to sacrifice itself for your cause.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("BigClickStacks",param1);
+                  CH2.currentCharacter.addTrait("TreeBigClickStacks",param1,true);
+               },
+               "icon":"iconBigClicks",
+               "upgradeable":false
+            },
+            "Bd":{
+               "name":"Bigger Big Clicks",
+               "tooltip":"Increases the damage done by Big Clicks by 5%",
+               "tooltipFunction":Character.getTraitTooltipFunction("BigClicksDamage"),
+               "flavorText":"They might not look any bigger when you get this upgrade. They\'re bigger on the inside. In fact, they weigh a lot more.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("BigClicksDamage",param1);
+                  CH2.currentCharacter.addTrait("TreeBigClicksDamage",param1,true);
+               },
+               "icon":"iconBigClicks",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "Hd":{
+               "name":"Huger Huge Click",
+               "tooltip":"Increases the damage done by Huge Click by 5%",
+               "tooltipFunction":Character.getTraitTooltipFunction("HugeClickDamage"),
+               "flavorText":"It actually gets bigger. But there is an unusual visual side effect that the rest of the world increases in size proportionally.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("HugeClickDamage",param1);
+                  CH2.currentCharacter.addTrait("TreeHugeClickDamage",param1,true);
+               },
+               "icon":"hugeClicks",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "Md":{
+               "name":"Mana Crit Damage",
+               "tooltip":"Increases the damage of Mana Crit by 5%",
+               "tooltipFunction":Character.getTraitTooltipFunction("ManaCritDamage"),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("ManaCritDamage",param1);
+                  CH2.currentCharacter.addTrait("TreeManaCritDamage",param1,true);
+               },
+               "icon":"manaClick",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "Kh":{
+               "name":"Hastened Clickstorm",
+               "tooltip":"Multiplies the cooldown of Clickstorm by 0.8",
+               "flavorText":"If a fixed positive amount less than 1 is multiplied to a number many times, that number is said to \"approach zero\". Enough applications and your number will get very close to, but never actually reach, zero.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  hastenClickstorm();
+               },
+               "icon":"clickstorm"
+            },
+            "Eh":{
+               "name":"Hastened Energize",
+               "tooltip":"Multiplies the cooldown and mana cost of Energize by 0.8",
+               "flavorText":"If a fixed positive amount less than 1 is multiplied to a number many times, that number is said to \"approach zero\". Enough applications and your number will get very close to, but never actually reach, zero.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  hastenEnergize();
+               },
+               "icon":"energize"
+            },
+            "Ea":{
+               "name":"Improved Energize",
+               "tooltip":"Increases the duration of Energize by 10% of its original duration.",
+               "tooltipFunction":Character.getTraitTooltipFunction("ImprovedEnergize"),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("ImprovedEnergize",param1);
+                  CH2.currentCharacter.addTrait("TreeImprovedEnergize",param1,true);
+               },
+               "icon":"energize",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "Ph":{
+               "name":"Hastened Powersurge",
+               "tooltip":"Multiplies the cooldown and mana cost of Powersurge by 0.8",
+               "flavorText":"If a fixed positive amount less than 1 is multiplied to a number many times, that number is said to \"approach zero\". Enough applications and your number will get very close to, but never actually reach, zero.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  hastenSkill("Powersurge",0.8);
+               },
+               "icon":"powersurgeDuration"
+            },
+            "Pt":{
+               "name":"Sustained Powersurge",
+               "tooltip":"Increases the duration of Powersurge by 5%.",
+               "tooltipFunction":Character.getTraitTooltipFunction("SustainedPowersurge"),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("SustainedPowersurge",param1);
+                  CH2.currentCharacter.addTrait("TreeSustainedPowersurge",param1,true);
+               },
+               "icon":"powersurgeDuration",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "Pa":{
+               "name":"Improved Powersurge",
+               "tooltip":"Increases the damage bonus of Powersurge by 5%.",
+               "tooltipFunction":Character.getTraitTooltipFunction("ImprovedPowersurge"),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("ImprovedPowersurge",param1);
+                  CH2.currentCharacter.addTrait("TreeImprovedPowersurge",param1,true);
+               },
+               "icon":"powersurgeDamage",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "Ra":{
+               "name":"Improved Reload",
+               "tooltip":"Increases Energy and Mana restored by Reload by 20 and...",
+               "tooltipFunction":this.getImprovedReloadTooltip(),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("ImprovedReload",param1);
+                  CH2.currentCharacter.addTrait("TreeImprovedReload",param1,true);
+               },
+               "icon":"improvedReload",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "Rh":{
+               "name":"Hastened Reload",
+               "tooltip":"Multiplies the cooldown of Reload by 0.8",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  hastenSkill("Reload",0.8);
+               },
+               "icon":"hastenReload"
+            },
+            "Aa":{
+               "name":"Auto Attack Damage",
+               "tooltip":"Increases the damage you do with Auto Attacks by 20%.",
+               "tooltipFunction":Character.getStatTooltipFunction(CH2.STAT_AUTOATTACK_DAMAGE),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_AUTOATTACK_DAMAGE,param1);
+               },
+               "icon":"autoAttack",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "T3":{
+               "name":"Skill: MultiClick",
+               "tooltip":"Clicks 5 times.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  addSkill("MultiClick")();
+               },
+               "icon":"nineClicks",
+               "flammable":true
+            },
+            "T1":{
+               "name":"Skill: Big Clicks",
+               "tooltip":"Causes your next 6 clicks to deal 300% damage.",
+               "flavorText":"When activated, press your mouse button harder for added effect.",
+               "setupFunction":function():*
+               {
+               },
+               "alwaysAvailable":true,
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.hasPurchasedFirstSkill = true;
+                  addSkill("Big Clicks")();
+               },
+               "icon":"iconBigClicks",
+               "flammable":true
+            },
+            "T2":{
+               "name":"Skill: Energize.",
+               "tooltip":"Restores 2 energy per second for 60 seconds.",
+               "flavorText":"This skill consumes Mana to create Energy.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  addSkill("Energize")();
+               },
+               "icon":"energize",
+               "flammable":true
+            },
+            "T5":{
+               "name":"Skill: Huge Click",
+               "tooltip":"Causes your next click to deal 1000% damage.",
+               "flavorText":"It stacks. Everything stacks.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  addSkill("Huge Click")();
+               },
+               "icon":"hugeClicks",
+               "flammable":true
+            },
+            "T4":{
+               "name":"Skill: Clickstorm",
+               "tooltip":CLICKSTORM_TOOLTIP,
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  addSkill("Clickstorm")();
+               },
+               "icon":"clickstorm",
+               "flammable":true
+            },
+            "T6":{
+               "name":"Skill: Powersurge",
+               "tooltip":"Causes your clicks within 60 seconds to deal 200% damage.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  addSkill("Powersurge")();
+               },
+               "icon":"powersurgeDamage",
+               "flammable":true
+            },
+            "T7":{
+               "name":"Skill: Mana Crit",
+               "tooltip":"Clicks with +100% chance to score a critical hit.",
+               "flavorText":"It stacks. Everything stacks.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  addSkill("Mana Crit")();
+               },
+               "icon":"manaClick",
+               "flammable":true
+            },
+            "T8":{
+               "name":"Skill: Reload",
+               "tooltip":"Restores 40 energy and mana and reduces the remaining cooldown of all skills by 40%.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  addSkill("Reload")();
+               },
+               "icon":"reload",
+               "flammable":true
+            },
+            "qG":{
+               "name":"Mammon\'s Greed",
+               "tooltip":"3 Levels of Gold Received. Multiplies your gold received from all sources by 133%.",
+               "tooltipFunction":Character.getStatTooltipFunction(CH2.STAT_GOLD,2),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_GOLD,2 + param1);
+               },
+               "icon":"goldx3",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "qCd":{
+               "name":"Precision of Bhaal",
+               "tooltip":"3 Levels of Critical Damage. Multiplies the damage of your critical hits by 172.8%.",
+               "tooltipFunction":Character.getStatTooltipFunction(CH2.STAT_CRIT_DAMAGE,2),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_CRIT_DAMAGE,2 + param1);
+               },
+               "icon":"critDamage",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "qH":{
+               "name":"Vaagur\'s Impatience",
+               "tooltip":"3 Levels of Haste. Multiplies your Haste by 115.7%.",
+               "tooltipFunction":Character.getStatTooltipFunction(CH2.STAT_HASTE,2),
+               "flavorText":"Haste affects the rate that you auto-attack, and all cooldown speeds, including Automator cooldown speeds.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_HASTE,2 + param1);
+               },
+               "icon":"haste",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "qGc":{
+               "name":"Revolc\'s Blessing",
+               "tooltip":"3 Levels of Clickable Gold. Multiplies your gold received from clickables by 337.5%.",
+               "tooltipFunction":Character.getStatTooltipFunction(CH2.STAT_CLICKABLE_GOLD,2),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_CLICKABLE_GOLD,2 + param1);
+               },
+               "icon":"clickableGold",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "qCl":{
+               "name":"The Wrath of Fragsworth",
+               "tooltip":"3 Levels of Click Damage. Multiplies your click damage by 133%.",
+               "tooltipFunction":Character.getStatTooltipFunction(CH2.STAT_CLICK_DAMAGE,2),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_CLICK_DAMAGE,2 + param1);
+               },
+               "icon":"clickDamage",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "qGb":{
+               "name":"Mimzee\'s Kindness",
+               "tooltip":"3 Levels of Monster Gold. Multiplies gold received by monsters by 172.8%.",
+               "tooltipFunction":Character.getStatTooltipFunction(CH2.STAT_MONSTER_GOLD,2),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_MONSTER_GOLD,2 + param1);
+               },
+               "icon":"bossGold",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "qIr":{
+               "name":"The Thrift of Dogcog",
+               "tooltip":"3 Levels of Item Cost Reduction. Reduces the cost of buying and leveling items by 22%.",
+               "tooltipFunction":Character.getStatTooltipFunctionReduction(CH2.STAT_ITEM_COST_REDUCTION,2),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_ITEM_COST_REDUCTION,2 + param1);
+               },
+               "icon":"itemCostReduction",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,100)
+            },
+            "qMt":{
+               "name":"Energon\'s Ions",
+               "tooltip":"4 Levels of Total Mana. Increases your maximum Mana by 100.",
+               "tooltipFunction":Character.getStatTooltipFunctionNoPercent(CH2.STAT_TOTAL_MANA,3),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_TOTAL_MANA,3 + param1);
+               },
+               "icon":"totalMana",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "qMr":{
+               "name":"Energon\'s Grace",
+               "tooltip":"3 Levels of Mana Regeneration. Multiplies your mana regeneration by 133%.",
+               "tooltipFunction":Character.getStatTooltipFunction(CH2.STAT_MANA_REGEN,2),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_MANA_REGEN,2 + param1);
+               },
+               "icon":"manaRegen",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "qEn":{
+               "name":"Juggernaut\'s Pittance",
+               "tooltip":"4 Levels of Total Energy. Increases your maximum Energy by 100.",
+               "tooltipFunction":Character.getStatTooltipFunctionNoPercent(CH2.STAT_TOTAL_ENERGY,3),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_TOTAL_ENERGY,3 + param1);
+               },
+               "icon":"totalEnergy",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "qGp":{
+               "name":"The Vision of Iris",
+               "tooltip":"3 Levels of Gold Piles. Multiplies the number of gold piles found by 130%.",
+               "tooltipFunction":Character.getStatTooltipFunctionChance(CH2.STAT_CLICKABLE_CHANCE,2),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_CLICKABLE_CHANCE,2 + param1);
+               },
+               "icon":"goldPiles",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,100)
+            },
+            "qBg":{
+               "name":"Fortuna\'s Luck",
+               "tooltip":"3 Levels of Bonus Gold Chance. Adds 3% to your chance of finding bonus gold.",
+               "tooltipFunction":Character.getStatTooltipFunctionChance(CH2.STAT_BONUS_GOLD_CHANCE,2),
+               "flavorText":"When killing monsters, bonus gold may appear.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_BONUS_GOLD_CHANCE,2 + param1);
+               },
+               "icon":"goldChance",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,100)
+            },
+            "qTc":{
+               "name":"Mimzee\'s Favor",
+               "tooltip":"3 Levels of Treasure Chest Chance. Adds 6% to the chance that a monster happens to be a treasure chest.",
+               "tooltipFunction":Character.getStatTooltipFunctionChance(CH2.STAT_TREASURE_CHEST_CHANCE,2),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_TREASURE_CHEST_CHANCE,2 + param1);
+               },
+               "icon":"treasureChance",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,100)
+            },
+            "qTg":{
+               "name":"Mimzee\'s Blessing",
+               "tooltip":"3 Levels of Treasure Chest Gold. Multiplies your gold received from treasure chests by 195%.",
+               "tooltipFunction":Character.getStatTooltipFunction(CH2.STAT_TREASURE_CHEST_GOLD,2),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_TREASURE_CHEST_GOLD,2 + param1);
+               },
+               "icon":"treasureGold",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "qMu":{
+               "name":"Mega Increased MultiClicks",
+               "tooltip":"Adds 3 clicks to your MultiClick.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("ExtraMulticlicks",2 + param1);
+                  CH2.currentCharacter.addTrait("TreeExtraMulticlicks",2 + param1,true);
+               },
+               "icon":"nineClicks",
+               "upgradeable":false,
+               "upgradeCostFunction":Character.linearExponential(10,1,100)
+            },
+            "qBc":{
+               "name":"Mega More Big Clicks",
+               "tooltip":"Increases the number of clicks empowered by Big Clicks by 3.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("BigClickStacks",2 + param1);
+                  CH2.currentCharacter.addTrait("TreeBigClickStacks",2 + param1,true);
+               },
+               "icon":"iconBigClicks",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,100)
+            },
+            "qBd":{
+               "name":"Mega Bigger Big Clicks",
+               "tooltip":"Increases the damage done by Big Clicks by 15%.",
+               "tooltipFunction":Character.getTraitTooltipFunction("BigClicksDamage",2),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("BigClicksDamage",2 + param1);
+                  CH2.currentCharacter.addTrait("TreeBigClicksDamage",2 + param1,true);
+               },
+               "icon":"iconBigClicks",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "qHd":{
+               "name":"Mega Huger Huge Click",
+               "tooltip":"Increases the damage of Huge Click by 15%.",
+               "tooltipFunction":Character.getTraitTooltipFunction("HugeClickDamage",2),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("HugeClickDamage",2 + param1);
+                  CH2.currentCharacter.addTrait("TreeHugeClickDamage",2 + param1,true);
+               },
+               "icon":"hugeClicks",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "qMd":{
+               "name":"Mega Mana Crit Damage",
+               "tooltip":"Increases the damage done by Mana Crits by 15%.",
+               "tooltipFunction":Character.getTraitTooltipFunction("ManaCritDamage",2),
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("ManaCritDamage",2 + param1);
+                  CH2.currentCharacter.addTrait("TreeManaCritDamage",2 + param1,true);
+               },
+               "icon":"manaClick",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "Q21":{
+               "name":"Synchrony",
+               "tooltip":"Skills do not interrupt Auto Attacks.  Auto Attacks generate 2 extra energy when Autoattackstorm is active.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("Synchrony",param1,false,false);
+                  applyUninterruptedAutoAttacksTalent();
+               },
+               "icon":"damagex3",
+               "flammable":true
+            },
+            "Q22":{
+               "name":"Release",
+               "tooltip":"Damage is increased by 100% while you have less than 60% of your total energy.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("LowEnergyDamageBonus",param1,false,false);
+               },
+               "icon":"damagex3",
+               "flammable":true
+            },
+            "Q23":{
+               "name":"Restraint",
+               "tooltip":"Gold gained is increased by 100% while you have more than 40% of your total energy.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("HighEnergyGoldBonus",param1,false,false);
+               },
+               "icon":"damagex3",
+               "flammable":true
+            },
+            "Q24":{
+               "name":"Discharge",
+               "tooltip":"Spending energy deals damage based on the amount of energy spent and your auto attack damage.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("Discharge",param1,false,false);
+               },
+               "icon":"damagex3",
+               "flammable":true
+            },
+            "Q25":{
+               "name":"Gift of Chronos",
+               "tooltip":"Spending mana increases haste for 5 seconds.",
+               "flavorText":"To clarify, this multiplies your haste by 100% plus 1% per point of mana spent in the previous 5 seconds. Gift of Chronos\'s duration is not decreased by haste.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("SpendManaHaste",param1,false,false);
+               },
+               "icon":"damagex3",
+               "flammable":true
+            },
+            "Q26":{
+               "name":"Curse of the Juggernaut",
+               "tooltip":"While Big Clicks is active, all skills cost 1 additional energy per skill that has been activated since Big Clicks began.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("CurseOfTheJuggernaut",param1,false,false);
+               },
+               "icon":"damagex3",
+               "flammable":true
+            },
+            "Q27":{
+               "name":"Limitless Big Clicks",
+               "tooltip":"Big Clicks has no cooldown and can stack infinitely.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  applyLimitlessBigClicks();
+               },
+               "icon":"damagex3",
+               "flammable":true
+            },
+            "Q28":{
+               "name":"Jerator\'s Enchantment",
+               "tooltip":"Critical Hits from Auto Attacks restore 1 mana and 3 energy.",
+               "flavorText":"",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("AutoAttackCritMana",param1,false,false);
+               },
+               "icon":"damagex3",
+               "flammable":true
+            },
+            "Q29":{
+               "name":"AutoAttackStorm",
+               "tooltip":AUTOATTACKSTORM_TOOLTIP,
+               "flavorText":"Replaces your current Storm.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  replaceStorm(CH2.currentCharacter.getStaticSkill("Autoattackstorm",CHARACTER_NAME));
+               },
+               "icon":"damagex3",
+               "flammable":true
+            },
+            "Q30":{
+               "name":"Managize",
+               "tooltip":"Energize becomes Managize, which restores 25% of your mana at the cost of 120 energy over 15 seconds.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.replaceSkill("Energize" + CHARACTER_NAME,CH2.currentCharacter.getStaticSkill("Managize",CHARACTER_NAME));
+               },
+               "icon":"damagex3",
+               "flammable":true
+            },
+            "Q41":{
+               "name":"Golden Clicks",
+               "tooltip":GOLDENCLICKS_TOOLTIP,
+               "flavorText":"Replaces your current Storm.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  replaceStorm(CH2.currentCharacter.getStaticSkill("GoldenClicks",CHARACTER_NAME));
+               },
+               "icon":"damagex3",
+               "flammable":true
+            },
+            "Q42":{
+               "name":"Huge Click Discount",
+               "tooltip":"Huge Click reduces the cost of items by half for 4 seconds.",
+               "flavorText":"Huge Click Discount\'s duration is not decreased by haste.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("HugeClickDiscount",param1,false,false);
+               },
+               "icon":"damagex3",
+               "flammable":true
+            },
+            "Q43":{
+               "name":"Reload Rampage",
+               "tooltip":"Reload also sets your current gold to double the amount you had at the beginning of the zone.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("ReloadRampage",param1,false,false);
+               },
+               "icon":"damagex3",
+               "flammable":true
+            },
+            "Q44":{
+               "name":"Preload",
+               "tooltip":"Reload reduces the cooldown of the next skill used by 50%.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("Preload",param1,false,false);
+               },
+               "icon":"damagex3",
+               "flammable":true
+            },
+            "Q45":{
+               "name":"Quick Reload",
+               "tooltip":"Reload\'s effects and cooldown are reduced by 80%.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  applySmallReloads();
+               },
+               "icon":"damagex3",
+               "flammable":true
+            },
+            "Q61":{
+               "name":"Bhaal\'s Rise",
+               "tooltip":"Scoring a Critical Hit reduces the remaining cooldown of Mana Crit by 1 second.",
+               "flavorText":"Casting a cooldown-improved Mana Crit will reset the cooldown of your *next* Mana Crit to its original duration.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("BhaalsRise",param1,false,false);
+               },
+               "icon":"damagex3",
+               "flammable":true
+            },
+            "Q62":{
+               "name":"Improved Mana Crit",
+               "tooltip":"Crit Chance increases the damage of Mana Crit and gives a chance to refund its mana cost, by the amount of Crit Chance you have.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("ImprovedManaCrit",param1,false,false);
+               },
+               "icon":"damagex3",
+               "flammable":true
+            },
+            "Q63":{
+               "name":"Critical Killing Surge",
+               "tooltip":"Monsters killed with a Critical Hit reduces the cooldown of Powersurge by 5 seconds.",
+               "flavorText":"Casting a cooldown-improved Powersurge will reset the cooldown of your *next* Powersurge to its original duration.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("CritKillPowerSurgeCooldown",param1,false,false);
+               },
+               "icon":"damagex3",
+               "flammable":true
+            },
+            "Q64":{
+               "name":"Mana Crit Overflow",
+               "tooltip":"Overkill from Mana Crit damages the next monster.",
+               "flavorText":"It will not spill damage over to more than one additional monster.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("ManaCritOverflow",param1,false,false);
+               },
+               "icon":"damagex3",
+               "flammable":true
+            },
+            "Q65":{
+               "name":"CritStorm",
+               "tooltip":CRITSTORM_TOOLTIP,
+               "flavorText":"Replaces your current Storm.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  replaceStorm(CH2.currentCharacter.getStaticSkill("Critstorm",CHARACTER_NAME));
+               },
+               "icon":"damagex3",
+               "flammable":true
+            },
+            "Q66":{
+               "name":"Critical Powersurge",
+               "tooltip":"PowerSurge gradually increases Crit Chance while active, reaching +20% at the end of its duration.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("PowerSurgeCritChance",param1,false,false);
+               },
+               "icon":"damagex3",
+               "flammable":true
+            },
+            "Q81":{
+               "name":"Limitless Haste",
+               "tooltip":"Removes the 1-second minimum limit on Global Cooldown, allowing Haste to reduce it below 1 second.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.gcdMinimum = 0.1;
+               },
+               "icon":"damagex3",
+               "flammable":true
+            },
+            "Q82":{
+               "name":"Flurry",
+               "tooltip":"Haste increases the number of clicks in a MultiClick by the percentage of haste you have.",
+               "flavorText":"Rounded up or rounded down? Only the Ancients know.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("Flurry",param1,false,false);
+               },
+               "icon":"damagex3",
+               "flammable":true
+            },
+            "Q83":{
+               "name":"Killing Frenzy",
+               "tooltip":"Multiply your haste by 150% upon killing a monster. Lasts 5 seconds. Does not stack, but the timer will reset with each kill.",
+               "flavorText":"Killing Frenzy\'s duration is not decreased by haste.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("KillingFrenzy",param1,false,false);
+               },
+               "icon":"damagex3",
+               "flammable":true
+            },
+            "Q84":{
+               "name":"Small Clicks",
+               "tooltip":"Makes your Big Clicks smaller. Small Clicks are half as strong, but there are twice as many of them.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("DistributedBigClicks",param1,false,false);
+               },
+               "icon":"damagex3",
+               "flammable":true
+            },
+            "Q85":{
+               "name":"Expandable Small Clicks",
+               "tooltip":"Haste increases the number of charges from Small Clicks, by the percentage of haste you have.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("DistributedBigClicksScaling",param1,false,false);
+               },
+               "icon":"damagex3",
+               "flammable":true
+            },
+            "Q86":{
+               "name":"Stormbringer",
+               "tooltip":"Small Clicks decreases the remaining cooldown of ClickTorrent by 1 second each.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("Stormbringer",param1,false,false);
+               },
+               "icon":"damagex3",
+               "flammable":true
+            },
+            "Q87":{
+               "name":"Hecaton\'s Echo",
+               "tooltip":"Huge Click, when activated, also triggers on every 20th click for the next 100 clicks.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("HecatonsEcho",param1,false,false);
+               },
+               "icon":"damagex3",
+               "flammable":true
+            },
+            "Q88":{
+               "name":"ClickTorrent",
+               "tooltip":CLICKTORRENT_TOOLTIP,
+               "flavorText":"Replaces your current Storm.",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  replaceStorm(CH2.currentCharacter.getStaticSkill("Clicktorrent",CHARACTER_NAME));
+               },
+               "icon":"damagex3",
+               "flammable":true
+            },
+            "Q89":{
+               "name":"Limited Haste",
+               "tooltip":"Triples your damage at the cost of half of your haste.",
+               "flavorText":"Do you really need to be going that fast?",
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.addTrait("LimitedHaste",param1,false,false);
+                  applyLimitedHaste();
+               },
+               "icon":"damagex3",
+               "flammable":true
+            },
+            "A00":{
+               "name":"Automator",
+               "tooltip":"Unlocks the Automator.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "alwaysAvailable":true,
+               "loadFunction":function():*
+               {
+               },
+               "setupFunction":function():*
+               {
+                  unlockAutomator();
+                  CH2.currentCharacter.automator.addSkillGem(CHARACTER_NAME + "_15","MultiClick" + CHARACTER_NAME);
+                  CH2.currentCharacter.automator.addSkillGem(CHARACTER_NAME + "_16","Big Clicks" + CHARACTER_NAME);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  purchaseAutomator();
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_15");
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_16");
+               },
+               "icon":"automator"
+            },
+            "A01":{
+               "name":"Gem: MultiClick",
+               "tooltip":"Automates MultiClick.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  CH2.currentCharacter.automator.addSkillGem(CHARACTER_NAME + "_15","MultiClick" + CHARACTER_NAME);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_15");
+               },
+               "icon":"gemNineClicks"
+            },
+            "A03":{
+               "name":"Gem: Big Clicks",
+               "tooltip":"Automates Big Clicks.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  CH2.currentCharacter.automator.addSkillGem(CHARACTER_NAME + "_16","Big Clicks" + CHARACTER_NAME);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_16");
+               },
+               "icon":"gemGameBigClicks"
+            },
+            "A05":{
+               "name":"Gem: Huge Click",
+               "tooltip":"Automates Huge Click.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  CH2.currentCharacter.automator.addSkillGem(CHARACTER_NAME + "_17","Huge Click" + CHARACTER_NAME);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_17");
+               },
+               "icon":"gemHugeClicks"
+            },
+            "A04":{
+               "name":"Gem: Clickstorm",
+               "tooltip":"Automates Clickstorm.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  CH2.currentCharacter.automator.addSkillGem(CHARACTER_NAME + "_51","Clickstorm" + CHARACTER_NAME);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_51");
+               },
+               "icon":"gemClickstorm"
+            },
+            "A02":{
+               "name":"Gem: Energize.",
+               "tooltip":"Automates Energize.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  CH2.currentCharacter.automator.addSkillGem(CHARACTER_NAME + "_18","Energize" + CHARACTER_NAME);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_18");
+               },
+               "icon":"gemEnergize"
+            },
+            "A06":{
+               "name":"Gem: Powersurge.",
+               "tooltip":"Automates Powersurge.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  CH2.currentCharacter.automator.addSkillGem(CHARACTER_NAME + "_19","Powersurge" + CHARACTER_NAME);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_19");
+               },
+               "icon":"gemPowersurge"
+            },
+            "A07":{
+               "name":"Gem: Mana Crit",
+               "tooltip":"Automates Mana Crit.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  CH2.currentCharacter.automator.addSkillGem(CHARACTER_NAME + "_20","Mana Crit" + CHARACTER_NAME);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_20");
+               },
+               "icon":"gemManaClick"
+            },
+            "A08":{
+               "name":"Gem: Reload",
+               "tooltip":"Automates Reload.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  CH2.currentCharacter.automator.addSkillGem(CHARACTER_NAME + "_52","Reload" + CHARACTER_NAME);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_52");
+               },
+               "icon":"gemReload"
+            },
+            "A11":{
+               "name":"Gem: AutoAttack Storm",
+               "tooltip":"Automates AutoAttack Storm. ",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  CH2.currentCharacter.automator.addSkillGem(CHARACTER_NAME + "_56","Autoattackstorm" + CHARACTER_NAME);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_56");
+               },
+               "icon":"gemClickstorm"
+            },
+            "A12":{
+               "name":"Gem: ClickTorrent",
+               "tooltip":"Automates ClickTorrent.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  CH2.currentCharacter.automator.addSkillGem(CHARACTER_NAME + "_57","Clicktorrent" + CHARACTER_NAME);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_57");
+               },
+               "icon":"gemClickstorm"
+            },
+            "A13":{
+               "name":"Gem: Golden Clicks",
+               "tooltip":"Automates Golden Clicks.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  CH2.currentCharacter.automator.addSkillGem(CHARACTER_NAME + "_58","GoldenClicks" + CHARACTER_NAME);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_58");
+               },
+               "icon":"gemClickstorm"
+            },
+            "A14":{
+               "name":"Gem: Critstorm",
+               "tooltip":"Automates Critstorm.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  CH2.currentCharacter.automator.addSkillGem(CHARACTER_NAME + "_59","Critstorm" + CHARACTER_NAME);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_59");
+               },
+               "icon":"gemClickstorm"
+            },
+            "A15":{
+               "name":"Gem: Managize",
+               "tooltip":"Automates Managize. ",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  CH2.currentCharacter.automator.addSkillGem(CHARACTER_NAME + "_55","Managize" + CHARACTER_NAME);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_55");
+               },
+               "icon":"gemEnergize"
+            },
+            "A20":{
+               "name":"Gem: Buy Random Catalog",
+               "tooltip":"Automates Buying a Random Catalog Item.",
+               "flavorText":"The Catalog is that area on the bottom left of the UI where you purchase new items.",
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuyRandomCatalogItemGem();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_4");
+               },
+               "icon":"gemBuyRandom"
+            },
+            "A21":{
+               "name":"Gem: Upgrade Cheapest Item",
+               "tooltip":"Automates Upgrading the Cheapest Item. It can also purchase a new item, if that is cheaper than all of your upgrades.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addUpgradeCheapestItemGem();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_5");
+               },
+               "icon":"gemUpgradeCheapest"
+            },
+            "A24":{
+               "name":"Gem: Upgrade Newest Item",
+               "tooltip":"Automates upgrading the Newest Item.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addUpgradeNewestItemGem();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_53");
+               },
+               "icon":"gemBuyRandom"
+            },
+            "A26":{
+               "name":"Gem: Upgrade All Items ",
+               "tooltip":"Automates upgrading All Items.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addUpgradeAllItemsGem();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_54");
+               },
+               "icon":"gemBuyRandom"
+            },
+            "A31":{
+               "name":"Gem: Swapping to set 1",
+               "tooltip":"Automates swapping to set 1.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addSwapToFirstSet();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_80");
+               },
+               "icon":"gemUpgradeCheapest"
+            },
+            "A32":{
+               "name":"Gem: Swapping to set 2",
+               "tooltip":"Automates swapping to set 2.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addSwapToSecondSet();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_81");
+               },
+               "icon":"gemUpgradeCheapest"
+            },
+            "A33":{
+               "name":"Gem: Swapping to set 3",
+               "tooltip":"Automates swapping to set 3.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addSwapToThirdSet();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_82");
+               },
+               "icon":"gemUpgradeCheapest"
+            },
+            "A34":{
+               "name":"Gem: Swapping to set 4",
+               "tooltip":"Automates swapping to set 4.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addSwapToFourthSet();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_83");
+               },
+               "icon":"gemUpgradeCheapest"
+            },
+            "A35":{
+               "name":"Gem: Swapping to set 5",
+               "tooltip":"Automates swapping to set 5.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addSwapToFifthSet();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_84");
+               },
+               "icon":"gemUpgradeCheapest"
+            },
+            "A36":{
+               "name":"Gem: Next Set",
+               "tooltip":"Switch to the next Automator Set.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addNextSetGem();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_21");
+               },
+               "icon":"gemSwitchNext"
+            },
+            "A37":{
+               "name":"Gem: Previous Set",
+               "tooltip":"Switch to the previous Automator Set.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addPreviousSetGem();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_22");
+               },
+               "icon":"gemSwitchPrev"
+            },
+            "A38":{
+               "name":"Additional Automator Set",
+               "tooltip":"Unlocks an additional set for the Automator.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.addQueueSet();
+               },
+               "icon":"gemAddSet"
+            },
+            "A39":{
+               "name":"Automator Speed",
+               "tooltip":"Speeds up the Automator by 50%.",
+               "tooltipFunction":Character.getStatTooltipFunction(CH2.STAT_AUTOMATOR_SPEED),
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_AUTOMATOR_SPEED,param1);
+               },
+               "icon":"automatorSpeed",
+               "upgradeable":true,
+               "upgradeCostFunction":Character.linearExponential(10,1,10)
+            },
+            "A40":{
+               "name":"Gem: Pause",
+               "tooltip":"Pauses the game",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addPauseGem();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_66");
+               },
+               "icon":"pauseIcon"
+            },
+            "A41":{
+               "name":"Gem: Unpause",
+               "tooltip":"Unpauses the game",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addUnpauseGem();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_67");
+               },
+               "icon":"playIcon"
+            },
+            "S20":{
+               "name":"Stone: Always",
+               "tooltip":"A stone that can always activate.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addAlwaysStone();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone(CHARACTER_NAME + "_1");
+               },
+               "icon":"always"
+            },
+            "S01":{
+               "name":"Stone: MH more than 50%",
+               "tooltip":"A stone that can activate when the next monster\'s health is greater than 50%.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addMHGreaterThan50PercentStone();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone(CHARACTER_NAME + "_5");
+               },
+               "icon":"mhGreater50"
+            },
+            "S02":{
+               "name":"Stone: MH less than 50%",
+               "tooltip":"A stone that can activate when the next monster\'s health is less than 50%.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addMHLessThan50PercentStone();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone(CHARACTER_NAME + "_6");
+               },
+               "icon":"mhLower50"
+            },
+            "S03":{
+               "name":"Stone: Energy more than 90%",
+               "tooltip":"A stone that can activate when your energy is above 90%.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addGreaterThan90PercentEnergyStone();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone(CHARACTER_NAME + "_7");
+               },
+               "icon":"energyGreater90"
+            },
+            "S04":{
+               "name":"Stone: Energy less than 10%",
+               "tooltip":"A stone that can activate when your energy is below 10%.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addLessThan10PercentEnergyStone();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone(CHARACTER_NAME + "_8");
+               },
+               "icon":"energyLower10"
+            },
+            "S05":{
+               "name":"Stone: Mana more than 90%",
+               "tooltip":"A stone that can activate when your mana is above 90%.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addGreaterThan90PercentManaStone();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone(CHARACTER_NAME + "_9");
+               },
+               "icon":"manaGreater90"
+            },
+            "S06":{
+               "name":"Stone: Mana less than 10%",
+               "tooltip":"A stone that can activate when your mana is below 10%.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addLessThan10PercentManaStone();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone(CHARACTER_NAME + "_10");
+               },
+               "icon":"manaLower10"
+            },
+            "S07":{
+               "name":"Stone: Zone Start",
+               "tooltip":"A stone that can activate during the first half of a zone.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addZoneStartStone();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone(CHARACTER_NAME + "_19");
+               },
+               "icon":"zoneStart"
+            },
+            "S08":{
+               "name":"Stone: Zone Middle",
+               "tooltip":"A stone that can activate during the second half of a zone.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addZoneMiddleStone();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone(CHARACTER_NAME + "_20");
+               },
+               "icon":"zoneMiddle"
+            },
+            "S21":{
+               "name":"Stone: 4s CD",
+               "tooltip":"A stone that can activate once every 4 seconds.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  CH2.currentCharacter.automator.addCooldownStone(CHARACTER_NAME + "_11",4000);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone(CHARACTER_NAME + "_11");
+               },
+               "icon":"CD4S"
+            },
+            "S22":{
+               "name":"Stone: 8s CD",
+               "tooltip":"A stone that can activate once every 8 seconds.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  CH2.currentCharacter.automator.addCooldownStone(CHARACTER_NAME + "_12",8000);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone(CHARACTER_NAME + "_12");
+               },
+               "icon":"CD8S"
+            },
+            "S23":{
+               "name":"Stone: 40s CD",
+               "tooltip":"A stone that can activate once every 40 seconds.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  CH2.currentCharacter.automator.addCooldownStone(CHARACTER_NAME + "_13",40000);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone(CHARACTER_NAME + "_13");
+               },
+               "icon":"CD40S"
+            },
+            "S24":{
+               "name":"Stone: 90s CD",
+               "tooltip":"A stone that can activate once every 90 seconds.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  CH2.currentCharacter.automator.addCooldownStone(CHARACTER_NAME + "_14",90000);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone(CHARACTER_NAME + "_14");
+               },
+               "icon":"CD90S"
+            },
+            "S25":{
+               "name":"Stone: 10m CD",
+               "tooltip":"A stone that can activate once every 10 minutes.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  CH2.currentCharacter.automator.addCooldownStone(CHARACTER_NAME + "_15",600000);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone(CHARACTER_NAME + "_15");
+               },
+               "icon":"CD10M"
+            },
+            "S61":{
+               "name":"Stone: Energize is not active.",
+               "tooltip":"A stone that can activate when Energize is not active.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("EnergizeEQ0","Energize = 0","A stone that can activate when Energize is not active.","Energize",CH2.COMPARISON_EQ,0);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("EnergizeEQ0");
+               },
+               "icon":"gemEnergize"
+            },
+            "S62":{
+               "name":"Stone: Huge Click is not active.",
+               "tooltip":"A stone that can activate when Huge Click is not active.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("HugeClickEQ0","Huge Click = 0","A stone that can activate when Huge Click is not active.","Huge Click",CH2.COMPARISON_EQ,0);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("HugeClickEQ0");
+               },
+               "icon":"gemHugeClicks"
+            },
+            "S63":{
+               "name":"Stone: Huge Click more than 0",
+               "tooltip":"A stone that can activate when Huge Click is active.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("HugeClickGT0","Huge Click > 0","A stone that can activate when Huge Click is active.","Huge Click",CH2.COMPARISON_GT,0);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("HugeClickGT0");
+               },
+               "icon":"gemHugeClicks"
+            },
+            "S51":{
+               "name":"Stone: Clickstorm is not active.",
+               "tooltip":"A stone that can activate when Clickstorm is not active.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("ClickstormEQ0","Clickstorm = 0","A stone that can activate when Clickstorm is not active.","Clickstorm",CH2.COMPARISON_EQ,0);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("ClickstormEQ0");
+               },
+               "icon":"gemClickstorm"
+            },
+            "S52":{
+               "name":"Stone: Clickstorm more than 0",
+               "tooltip":"A stone that can activate when Clickstorm is active.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("ClickstormGT0","Clickstorm > 0","A stone that can activate when Clickstorm is active.","Clickstorm",CH2.COMPARISON_GT,0);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("ClickstormGT0");
+               },
+               "icon":"gemClickstorm"
+            },
+            "S66":{
+               "name":"Stone: Powersurge is not active.",
+               "tooltip":"A stone that can activate when Powersurge is not active.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("PowersurgeEQ0","Powersurge = 0","A stone that can activate when Powersurge is not active.","Powersurge",CH2.COMPARISON_EQ,0);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("PowersurgeEQ0");
+               },
+               "icon":"gemPowersurge"
+            },
+            "S67":{
+               "name":"Stone: Powersurge more than 0",
+               "tooltip":"A stone that can activate when Powersurge is active.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("PowersurgeGT0","Powersurge > 0","A stone that can activate when Powersurge is active.","Powersurge",CH2.COMPARISON_GT,0);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("PowersurgeGT0");
+               },
+               "icon":"gemPowersurge"
+            },
+            "S68":{
+               "name":"Stone: Big Clicks is not active.",
+               "tooltip":"A stone that can activate when Big Clicks is not active.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("BigClicksEQ0","Big Clicks = 0","A stone that can activate when Big Clicks is not active.","Big Clicks",CH2.COMPARISON_EQ,0);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("BigClicksEQ0");
+               },
+               "icon":"gemGameBigClicks"
+            },
+            "S69":{
+               "name":"Stone: Big Clicks more than 0",
+               "tooltip":"A stone that can activate when Big Clicks is active.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("BigClicksGT0","Big Clicks > 0","A stone that can activate when Big Clicks is active.","Big Clicks",CH2.COMPARISON_GT,0);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("BigClicksGT0");
+               },
+               "icon":"gemGameBigClicks"
+            },
+            "S70":{
+               "name":"Stone: Big Clicks less than 10",
+               "tooltip":"A stone that can activate when Big Clicks has less than 10 stacks.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("BigClicksLT10","Big Clicks < 10","A stone that can activate when Big Clicks has less than 10 stacks.","Big Clicks",CH2.COMPARISON_LT,10);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("BigClicksLT10");
+               },
+               "icon":"gemGameBigClicks"
+            },
+            "S71":{
+               "name":"Stone: Big Clicks more than 10",
+               "tooltip":"A stone that can activate when Big Clicks has more than 10 stacks.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("BigClicksGT10","Big Clicks > 10","A stone that can activate when Big Clicks has more than 10 stacks.","Big Clicks",CH2.COMPARISON_GT,10);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("BigClicksGT10");
+               },
+               "icon":"gemGameBigClicks"
+            },
+            "S72":{
+               "name":"Stone: Big Clicks less than 50",
+               "tooltip":"A stone that can activate when Big Clicks has less than 50 stacks.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("BigClicksLT50","Big Clicks < 50","A stone that can activate when Big Clicks has less than 50 stacks.","Big Clicks",CH2.COMPARISON_LT,50);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("BigClicksLT50");
+               },
+               "icon":"gemGameBigClicks"
+            },
+            "S73":{
+               "name":"Stone: Big Clicks more than 50",
+               "tooltip":"A stone that can activate when Big Clicks has more than 50 stacks.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("BigClicksGT50","Big Clicks > 50","A stone that can activate when Big Clicks has more than 50 stacks.","Big Clicks",CH2.COMPARISON_GT,50);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("BigClicksGT50");
+               },
+               "icon":"gemGameBigClicks"
+            },
+            "S74":{
+               "name":"Stone: Big Clicks less than 100",
+               "tooltip":"A stone that can activate when Big Clicks has less than 100 stacks.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("BigClicksLT100","Big Clicks < 100","A stone that can activate when Big Clicks has less than 100 stacks.","Big Clicks",CH2.COMPARISON_LT,100);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("BigClicksLT100");
+               },
+               "icon":"gemGameBigClicks"
+            },
+            "S75":{
+               "name":"Stone: Big Clicks more than 100",
+               "tooltip":"A stone that can activate when Big Clicks has more than 100 stacks.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("BigClicksGT100","Big Clicks > 100","A stone that can activate when Big Clicks has more than 100 stacks.","Big Clicks",CH2.COMPARISON_GT,100);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("BigClicksGT100");
+               },
+               "icon":"gemGameBigClicks"
+            },
+            "S76":{
+               "name":"Stone: Big Clicks less than 200",
+               "tooltip":"A stone that can activate when Big Clicks has less than 200 stacks.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("BigClicksLT200","Big Clicks < 200","A stone that can activate when Big Clicks has less than 200 stacks.","Big Clicks",CH2.COMPARISON_LT,200);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("BigClicksLT200");
+               },
+               "icon":"gemGameBigClicks"
+            },
+            "S77":{
+               "name":"Stone: Big Clicks more than 200",
+               "tooltip":"A stone that can activate when Big Clicks has more than 200 stacks.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("BigClicksGT200","Big Clicks > 200","A stone that can activate when Big Clicks has more than 200 stacks.","Big Clicks",CH2.COMPARISON_GT,200);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("BigClicksGT200");
+               },
+               "icon":"gemGameBigClicks"
+            },
+            "S78":{
+               "name":"Stone: Big Clicks more than MultiClick",
+               "tooltip":"A stone that can activate when Big Clicks has more stacks than MultiClick can click.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBigClicksGTMultiClicksStone();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("BigClicksGTMultiClicks");
+               },
+               "icon":"gemGameBigClicks"
+            },
+            "S79":{
+               "name":"Stone: Big Clicks is less than MultiClick",
+               "tooltip":"A stone that can activate when Big Clicks does not have more stacks than MultiClick can click.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBigClicksLTEMultiClicksStone();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("BigClicksLTEMultiClicks");
+               },
+               "icon":"gemGameBigClicks"
+            },
+            "S80":{
+               "name":"Stone: Juggernaut more than 20",
+               "tooltip":"A stone that can activate when Juggernaut has more than 20 stacks.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("JuggernautGT20","Juggernaut > 20","A stone that can activate when Juggernaut has more than 20 stacks.","Curse Of The Juggernaut",CH2.COMPARISON_GT,20);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("JuggernautGT20");
+               },
+               "icon":"automator"
+            },
+            "S81":{
+               "name":"Stone: Juggernaut more than 50",
+               "tooltip":"A stone that can activate when Juggernaut has more than 50 stacks.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("JuggernautGT50","Juggernaut > 50","A stone that can activate when Juggernaut has more than 50 stacks.","Curse Of The Juggernaut",CH2.COMPARISON_GT,50);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("JuggernautGT50");
+               },
+               "icon":"automator"
+            },
+            "S82":{
+               "name":"Stone: Juggernaut more than 100",
+               "tooltip":"A stone that can activate when Juggernaut has more than 100 stacks.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("JuggernautGT100","Juggernaut > 100","A stone that can activate when Juggernaut has more than 100 stacks.","Curse Of The Juggernaut",CH2.COMPARISON_GT,100);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("JuggernautGT100");
+               },
+               "icon":"automator"
+            },
+            "S83":{
+               "name":"Stone: Juggernaut more than 200",
+               "tooltip":"A stone that can activate when Juggernaut has more than 200 stacks.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("JuggernautGT200","Juggernaut > 200","A stone that can activate when Juggernaut has more than 200 stacks.","Curse Of The Juggernaut",CH2.COMPARISON_GT,200);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("JuggernautGT200");
+               },
+               "icon":"automator"
+            },
+            "V":{
+               "name":"Automator Points",
+               "tooltip":"Adds 2 Automator Points.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automatorPoints = CH2.currentCharacter.automatorPoints + 2;
+               },
+               "icon":"automator"
+            },
+            "S85":{
+               "name":"Stone: Managize is not active.",
+               "tooltip":"A stone that can activate when Managize is not active.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("ManagizeEQ0","Managize = 0","A stone that can activate when Managize is not active.","Managize",CH2.COMPARISON_EQ,0);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("ManagizeEQ0");
+               },
+               "icon":"gemEnergize"
+            },
+            "S87":{
+               "name":"Stone: Multiclick is not active.",
+               "tooltip":"A stone that can activate when Multiclick is not active.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("MultiClickEQ0","Multiclick = 0","A stone that can activate when Multiclick is not active.","MultiClick",CH2.COMPARISON_LTE,0);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("MultiClickEQ0");
+               },
+               "icon":"gemNineClicks"
+            },
+            "S86":{
+               "name":"Stone: Juggernaut more than 10",
+               "tooltip":"A stone that can activate when Juggernaut has more than 10 stacks.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("JuggernautGT10","Juggernaut > 10","A stone that can activate when Juggernaut has more than 10 stacks.","Curse Of The Juggernaut",CH2.COMPARISON_GT,10);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("JuggernautGT10");
+               },
+               "icon":"automator"
+            },
+            "S89":{
+               "name":"Stone: First Zone of World",
+               "tooltip":"A stone that can activate when it\'s the first zone of the world.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addFirstZoneOfWorldStone();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone(CHARACTER_NAME + "_35");
+               },
+               "icon":null
+            },
+            "S88":{
+               "name":"Stone: Not First Zone of World",
+               "tooltip":"A stone that can activate when it\'s not the first zone of the world.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addNotFirstZoneOfWorldStone();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone(CHARACTER_NAME + "_34");
+               },
+               "icon":null
+            },
+            "qCc":{
+               "name":"+20% Crit Chance",
+               "tooltip":"This Node does not actually exist in the game.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_CRIT_CHANCE,9 + param1);
+               },
+               "icon":"critChance"
+            },
+            "":{
+               "name":"NULL",
+               "tooltip":"Does Absolutely NOTHING.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+               },
+               "icon":"goldx3"
+            },
+            "Z01":{
+               "name":"Gem: Attempt Boss",
+               "tooltip":"Automates Attempting a Boss.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+                  addAttemptBossGem();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_10");
+               },
+               "icon":"gemAttemptBoss"
+            },
+            "A9":{
+               "name":"Gem: Dash",
+               "tooltip":"Automates Dash.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+                  addDashGem();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_3");
+               },
+               "icon":"gemDash"
+            },
+            "A27":{
+               "name":"Gem: Spend All Gold on Cheapest Upgrades",
+               "tooltip":"Automates spending all gold on Cheapest Upgrades.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addUpgradeAllCheapestItemsGem();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_62");
+               },
+               "icon":"gemUpgradeCheapest"
+            },
+            "Z00":{
+               "name":"Automator Slot",
+               "tooltip":"Unlocks an additional slot for the Automator.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.addQueueSlot();
+               },
+               "icon":"gemAddSlot"
+            },
+            "Pc":{
+               "name":"Pierce Chance (NOT IN GAME)",
+               "tooltip":"Adds 1% to your chance to hit an additional monster.",
+               "flavorText":null,
+               "setupFunction":function():*
+               {
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.levelUpStat(CH2.STAT_PIERCE_CHANCE,4 + param1);
+               },
+               "icon":"pierceChance"
+            },
+            "A22":{
+               "name":"Gem: Upgrade 3rd Newest Item",
+               "tooltip":"Automates upgrading the Third Newest Item.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addUpgradeThirdNewestItemGem();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_60");
+               },
+               "icon":"gemBuyRandom"
+            },
+            "A23":{
+               "name":"Gem: Upgrade 2nd Newest Item",
+               "tooltip":"Automates upgrading the Second Newest Item.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addUpgradeSecondNewestItemGem();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_61");
+               },
+               "icon":"gemBuyRandom"
+            },
+            "A25":{
+               "name":"Gem: Upgrade Cheapest Item to x10",
+               "tooltip":"Automates upgrading the Cheapest Item to the next Multiplier.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addUpgradeCheapestItemToNextMultiplierGem();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_63");
+               },
+               "icon":"gemBuyRandom"
+            },
+            "A28":{
+               "name":"Gem: Buy Metal Detectors",
+               "tooltip":"Automates buying Metal Detectors.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuyMetalDetectorsGem();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_64");
+               },
+               "icon":"gemBuyRandom"
+            },
+            "A29":{
+               "name":"Gem: Buy Runes",
+               "tooltip":"Automates buying Runes.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuyRunesGem();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockGem(CHARACTER_NAME + "_65");
+               },
+               "icon":"gemBuyRandom"
+            },
+            "A30":{
+               "name":"Stone: World Completions < 1",
+               "tooltip":"A stone that always activates on the first run of a world.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addLT1WorldCompletionsStone();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("LT1WorldCompletions");
+               },
+               "icon":""
+            },
+            "A31":{
+               "name":"Stone: World Completions > 1",
+               "tooltip":"A stone that always activates on repeated runs of a world.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addGT1WorldCompletionsStone();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("GT1WorldCompletions");
+               },
+               "icon":""
+            },
+            "S09":{
+               "name":"Stone: Boss Zone",
+               "tooltip":"A stone that can activate during a boss fight.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBossEncounterStone();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone(CHARACTER_NAME + "_18");
+               },
+               "icon":"gemAttemptBoss"
+            },
+            "S10":{
+               "name":"Stone: Crit Chance >= 100%",
+               "tooltip":"A stone that can activate when your chance to score a critical hit is above 99%.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addCritThresholdStone();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone(CHARACTER_NAME + "_21");
+               },
+               "icon":"gemAddSet"
+            },
+            "S11":{
+               "name":"Stone: Energy more than Mana",
+               "tooltip":"A stone that can activate when your energy is above your mana.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addEnergyGreaterThanManaStone();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone(CHARACTER_NAME + "_22");
+               },
+               "icon":"EgtMIcon"
+            },
+            "S12":{
+               "name":"Stone: Mana more than Energy",
+               "tooltip":"A stone that can activate when your mana is above your energy.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addManaGreaterThanEnergyStone();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone(CHARACTER_NAME + "_23");
+               },
+               "icon":"MgtEIcon"
+            },
+            "S13":{
+               "name":"Stone: Energy less than 40%",
+               "tooltip":"A stone that can activate when your energy is below 40%.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addEnergyLessThan40PercentStone();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone(CHARACTER_NAME + "_24");
+               },
+               "icon":""
+            },
+            "S14":{
+               "name":"Stone: Energy more than 60%",
+               "tooltip":"A stone that can activate when your energy is above 60%.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addEnergyGreaterThan60PercentStone();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone(CHARACTER_NAME + "_25");
+               },
+               "icon":""
+            },
+            "S15":{
+               "name":"Stone: Mana less than 40%",
+               "tooltip":"A stone that can activate when your mana is below 40%.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addManaLessThan40PercentStone();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone(CHARACTER_NAME + "_26");
+               },
+               "icon":""
+            },
+            "S16":{
+               "name":"Stone: Mana more than 60%",
+               "tooltip":"A stone that can activate when your mana is above 60%.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addManaGreaterThan60PercentStone();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone(CHARACTER_NAME + "_27");
+               },
+               "icon":""
+            },
+            "S17":{
+               "name":"Stone: Before First Zone Kill",
+               "tooltip":"A stone that can activate before killing the first monster of a zone.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBeforeFirstZoneKillStone();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone(CHARACTER_NAME + "_28");
+               },
+               "icon":"firstMonsterIcon"
+            },
+            "S18":{
+               "name":"Stone: First World of System",
+               "tooltip":"A stone that can activate when you are on the first world of a Star System.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addFirstWorldOfGildStone();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone(CHARACTER_NAME + "_29");
+               },
+               "icon":""
+            },
+            "S19":{
+               "name":"Stone: Not First World of Sysem",
+               "tooltip":"A stone that can activate when you are not on the first world of a Star System.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addNotFirstWorldOfGildStone();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone(CHARACTER_NAME + "_30");
+               },
+               "icon":""
+            },
+            "S26":{
+               "name":"Stone: Next monster more than 90 cm away",
+               "tooltip":"A stone that can activate when the next monster is more than 90 cm away.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addGreaterThanMonsterDistanceStone();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone(CHARACTER_NAME + "_31");
+               },
+               "icon":"NMgt90Icon"
+            },
+            "S27":{
+               "name":"Stone: Not a Boss Zone",
+               "tooltip":"A stone that can activate when you are not on a boss zone.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addNotABossZoneStone();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone(CHARACTER_NAME + "_32");
+               },
+               "icon":"gemAttemptBoss"
+            },
+            "S28":{
+               "name":"Stone: Next monster less than 90 cm away",
+               "tooltip":"A stone that can activate when the next monster is less than 90 cm away.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addLessThanMonsterDistanceStone();
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone(CHARACTER_NAME + "_33");
+               },
+               "icon":"NMlt90Icon"
+            },
+            "S53":{
+               "name":"Stone: Autoattackstorm is not active",
+               "tooltip":"A stone that can activate when Autoattackstorm is not active.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("AutoattackstormEQ0","Autoattackstorm = 0","A stone that can activate when Autoattackstorm is not active.","Autoattackstorm",CH2.COMPARISON_EQ,0);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("AutoattackstormEQ0");
+               },
+               "icon":"gemClickstorm"
+            },
+            "S54":{
+               "name":"Stone: Autoattackstorm is active",
+               "tooltip":"A stone that can activate when Autoattackstorm is active.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("AutoattackstormGT0","Autoattackstorm > 0","A stone that can activate when Autoattackstorm is active.","Autoattackstorm",CH2.COMPARISON_GT,0);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("AutoattackstormGT0");
+               },
+               "icon":"gemClickstorm"
+            },
+            "S55":{
+               "name":"Stone: Critstorm is not active",
+               "tooltip":"A stone that can activate when Critstorm is not active.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("CritstormEQ0","Critstorm = 0","A stone that can activate when Critstorm is not active.","Critstorm",CH2.COMPARISON_EQ,0);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("CritstormEQ0");
+               },
+               "icon":"gemClickstorm"
+            },
+            "S56":{
+               "name":"Stone: Critstorm is active",
+               "tooltip":"A stone that can activate when Critstorm is active.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("CritstormGT0","Critstorm > 0","A stone that can activate when Critstorm is active.","Critstorm",CH2.COMPARISON_GT,0);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("CritstormGT0");
+               },
+               "icon":"gemClickstorm"
+            },
+            "S57":{
+               "name":"Stone: Golden Clicks is not active",
+               "tooltip":"A stone that can activate when Golden Clicks is not active.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("GoldenClicksEQ0","Golden Clicks = 0","A stone that can activate when Golden Clicks is not active.","GoldenClicks",CH2.COMPARISON_EQ,0);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("GoldenClicksEQ0");
+               },
+               "icon":"gemClickstorm"
+            },
+            "S58":{
+               "name":"Stone: Golden Clicks is active",
+               "tooltip":"A stone that can activate when Golden Clicks is active.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("GoldenClicksGT0","Golden Clicks > 0","A stone that can activate when Golden Clicks is active.","GoldenClicks",CH2.COMPARISON_GT,0);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("GoldenClicksGT0");
+               },
+               "icon":"gemClickstorm"
+            },
+            "S59":{
+               "name":"Stone: Clicktorrent is not active",
+               "tooltip":"A stone that can activate when Clicktorrent is not active.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("ClicktorrentEQ0","Clicktorrent = 0","A stone that can activate when Clicktorrent is not active.","Clicktorrent",CH2.COMPARISON_EQ,0);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("ClicktorrentEQ0");
+               },
+               "icon":"gemClickstorm"
+            },
+            "S60":{
+               "name":"Stone: Clicktorrent is active",
+               "tooltip":"A stone that can activate when Clicktorrent is active.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("ClicktorrentGT0","Clicktorrent > 0","A stone that can activate when Clicktorrent is active.","Clicktorrent",CH2.COMPARISON_GT,0);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("ClicktorrentGT0");
+               },
+               "icon":"gemClickstorm"
+            },
+            "S64":{
+               "name":"Stone: Discount is active",
+               "tooltip":"A stone that can activate when Huge Click Discount is active.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("DiscountGT0","Discount > 0","A stone that can activate when Huge Click Discount is active.","Huge Click Discount",CH2.COMPARISON_GT,0);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("DiscountGT0");
+               },
+               "icon":"gemHugeClicks"
+            },
+            "S65":{
+               "name":"Stone: Preload is active",
+               "tooltip":"A stone that can activate when Preload is active.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("PreloadGT0","Preload > 0","A stone that can activate when Preload is active.","Preload",CH2.COMPARISON_GT,0);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("PreloadGT0");
+               },
+               "icon":"gemReload"
+            },
+            "S84":{
+               "name":"Stone: Preload is not active",
+               "tooltip":"A stone that can activate when Preload is not active.",
+               "flavorText":null,
+               "costsAutomatorPoint":true,
+               "setupFunction":function():*
+               {
+                  addBuffComparisonStone("PreloadEQ0","Preload = 0","A stone that can activate when Preload is not active.","Preload",CH2.COMPARISON_EQ,0);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+                  CH2.currentCharacter.automator.unlockStone("PreloadEQ0");
+               },
+               "icon":"gemReload"
+            },
+            "HL":{
+               "name":"Gem: Hand of Libertas",
+               "tooltip":"",
+               "flavorText":null,
+               "costsAutomatorPoint":false,
+               "setupFunction":function():*
+               {
+                  CH2.currentCharacter.automator.addSkillGem("HandOfLibertas","Hand of Libertas" + CHARACTER_NAME);
+               },
+               "purchaseFunction":function(param1:Number):*
+               {
+               },
+               "icon":""
+            }
+         };
