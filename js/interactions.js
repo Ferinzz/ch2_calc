@@ -295,6 +295,7 @@ function findKey(array, key, value) {
  document.getElementsByClassName("Total")[0].innerHTML = total;
  document.getElementsByClassName("Sp")[0].innerHTML = Sp;
  ascensions();
+ collectMultipliers();
 
  }
  
@@ -344,8 +345,10 @@ function collectMultipliers()
         let MultipliersTrans=1;
         let DefaultMults=1;
         let multCount=2;
+        //every build should include items crit chance and haste, so factoring these in by default.
         DefaultMults=itemAverage();
         DefaultMults=DefaultMults*parseFloat(document.getElementsByClassName('H display')[0].innerHTML)*parseFloat(document.getElementsByClassName('Cc display')[0].innerHTML)*parseFloat(document.getElementsByClassName('Cd display')[0].innerHTML)/100;
+
         let goldMulti=parseInt(document.getElementById('GoldPerZone').innerHTML)*document.getElementById('treasure').checked+parseInt(document.getElementById('GoldPerFive').innerHTML)*document.getElementById('clickable').checked;
         //Loop through the checkboxes to get the multipliers the person is interested in.
         for(let i=0; i<document.getElementsByClassName('box').length;  i++)
@@ -364,8 +367,11 @@ function collectMultipliers()
         document.getElementById('mult_sys').innerHTML=MultipliersSystem;
         //total multipliers per trans. As you are getting stat*asc, we can abreviate the math to be asc^multipliers
         MultipliersTrans=MultipliersBase*DefaultMults*Math.pow(parseFloat(document.getElementById('asc_count').innerHTML),multCount);
+        //account for the 
+        MultipliersTrans=MultipliersTrans*(Math.pow(parseFloat(document.getElementById('asc_count').innerHTML),8)/8)
         //Boolean check for the multipliers to count for gold
-        let boolCheck=(2+document.getElementById('GB').checked*2)*document.getElementById('treasure').checked+(3+document.getElementById('GB').checked)*document.getElementById('clickable').checked;
+        //makes it so that I am increasing the power based on whether they are using clickable or treasure and if they have CV or GB
+        let boolCheck=(2+document.getElementById('GB').checked*2)*document.getElementById('treasure').checked+(3+document.getElementById('Click_Value').checked)*document.getElementById('clickable').checked;
         MultipliersTrans=MultipliersTrans*goldMulti*Math.pow(parseFloat(document.getElementById('asc_count').innerHTML), boolCheck)*(1+3.6*document.getElementById('clickable').checked)
         document.getElementById('mult_trans').innerHTML=MultipliersTrans;
 
