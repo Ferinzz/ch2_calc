@@ -6,6 +6,7 @@
    4. tab upgrades added
 */
 
+
 //Import listener
 document.getElementsByClassName('Import')[0].addEventListener("mouseup", importTree, false)
 
@@ -216,7 +217,7 @@ function findKey(array, key, value) {
     //Used to get the total points spent to build the tree. each node is one value in the array
     Sp=mySkillTree.length;
     //calls the function which will call the refresh and count total values.
-    changeTotal(Sp)
+    refreshLoop(total=0,Sp)
     return;
  }
  
@@ -226,81 +227,83 @@ function findKey(array, key, value) {
  /*
  Loops over the page to add in the values using the formulas above.
  */
- function refreshLoop(total){
- var transStatLinear = Math.pow(1.1, document.getElementById('TransLinear').value);
- var transStatChance = Math.pow(1.1, document.getElementById('TransChance').value);
- //Basic loop function to update when user adds their specific data and after import
- var fillin;
+
+ function refreshLoop(total,Sp){
+    var transStatLinear = Math.pow(1.1, document.getElementById('TransLinear').value);
+     var transStatChance = Math.pow(1.1, document.getElementById('TransChance').value);
+    //Basic loop function to update when user adds their specific data and after import
+    var fillin;
  
- for(var i=0; i<document.getElementsByClassName('linear').length; i++)
- { 
-    var node=document.getElementsByClassName('linear')[i];
-    fillin=document.getElementsByClassName('linear')[i].id+' display';
-    document.getElementsByClassName(fillin)[0].innerHTML=linear(node);
-    total+=parseInt(node.value)
- }
+    for(var i=0; i<document.getElementsByClassName('linear').length; i++)
+        { 
+           var node=document.getElementsByClassName('linear')[i];
+           fillin=document.getElementsByClassName('linear')[i].id+' display';
+          document.getElementsByClassName(fillin)[0].innerHTML=linear(node);
+           total+=parseInt(node.value)
+         }
  
- for(var i=0; i<document.getElementsByClassName('10x').length; i++)
- {  fillin=0;
-   var node=document.getElementsByClassName('10x')[i];
-   fillin=document.getElementsByClassName('10x')[i].id+' display';
-   document.getElementsByClassName(fillin)[0].innerHTML=tenx(node);
-   total+=parseInt(node.value);
- }
+     for(var i=0; i<document.getElementsByClassName('10x').length; i++)
+        {  fillin=0;
+              var node=document.getElementsByClassName('10x')[i];
+              fillin=document.getElementsByClassName('10x')[i].id+' display';
+               document.getElementsByClassName(fillin)[0].innerHTML=tenx(node);
+               total+=parseInt(node.value);
+         }
  
  //Auto-Attacks gets something special
- var node=document.getElementsByClassName('aa')[0];
- document.getElementsByClassName('Aa display')[0].innerHTML=aa(node);
- total+=parseInt(node.value);
+     var node=document.getElementsByClassName('aa')[0];
+     document.getElementsByClassName('Aa display')[0].innerHTML=aa(node);
+     total+=parseInt(node.value);
  
  //sustained powersurge is something special
- var node=document.getElementsByClassName('PSduration')[0];
- document.getElementsByClassName('Pt display')[0].innerHTML=PSDuration(node);
- total+=parseInt(node.value);
+     var node=document.getElementsByClassName('PSduration')[0];
+    document.getElementsByClassName('Pt display')[0].innerHTML=PSDuration(node);
+    total+=parseInt(node.value);
  
  //extra click count is special
- for(var i=0; i<document.getElementsByClassName('singles').length; i++)
- {
- var node=document.getElementsByClassName('singles')[i];
- fillin=document.getElementsByClassName('singles')[i].id+' display';
- document.getElementsByClassName(fillin)[0].innerHTML=node.value;
- total+=parseInt(node.value);
- }
+    for(var i=0; i<document.getElementsByClassName('singles').length; i++)
+    {
+        var node=document.getElementsByClassName('singles')[i];
+        fillin=document.getElementsByClassName('singles')[i].id+' display';
+        document.getElementsByClassName(fillin)[0].innerHTML=node.value;
+        total+=parseInt(node.value);
+     }
  
  //All the % chance diminishing returns things are gonna have the estimated system factored into it.
  //Treasure Chance Tc/crit chance Cc/ICR Ir/bonus gold Bg 1-1/(1+0.005*node.value*transStat*)
  for(var i=0; i<document.getElementsByClassName('chance').length; i++)
- {
-   var node=document.getElementsByClassName('chance')[i];
- fillin=document.getElementsByClassName('chance')[i].id+' display';
-   document.getElementsByClassName(fillin)[0].innerHTML=chance(node);
-   total+=parseInt(node.value);
- }
+     {
+       var node=document.getElementsByClassName('chance')[i];
+        fillin=document.getElementsByClassName('chance')[i].id+' display';
+       document.getElementsByClassName(fillin)[0].innerHTML=chance(node);
+       total+=parseInt(node.value);
+     }
  
  //clickables chance Gp 1-1/(1+0.0005*B7)
  
- var node=document.getElementById('Gp');
- document.getElementsByClassName('Gp display')[0].innerHTML=clickables(node);
- total+=parseInt(node.value);
+     var node=document.getElementById('Gp');
+     document.getElementsByClassName('Gp display')[0].innerHTML=clickables(node);
+     total+=parseInt(node.value);
  
  //haste H (1-1/(1+0.005*Haste))*9+1)
  
- var node=document.getElementById('H');
- document.getElementsByClassName('H display')[0].innerHTML=Haste(node);
- total+=parseInt(node.value);
+     var node=document.getElementById('H');
+     document.getElementsByClassName('H display')[0].innerHTML=Haste(node);
+     total+=parseInt(node.value);
  
  WriteGoldMults();
+ document.getElementsByClassName("Total")[0].innerHTML = total;
+ document.getElementsByClassName("Sp")[0].innerHTML = Sp;
+ ascensions();
 
- return total;
  }
  
  
- //This function is called at the end of importTree to loop through get the total
- function changeTotal(Sp){
-    total=refreshLoop(total=0)
+ //This function is called at the end of refresh to output the totals
+ function changeTotal(Sp,total){
     document.getElementsByClassName("Total")[0].innerHTML = total;
     document.getElementsByClassName("Sp")[0].innerHTML = Sp;
-    
+    ascensions();
     }
 
 function WriteGoldMults(){
@@ -336,5 +339,42 @@ function WriteGoldMults(){
 
 function collectMultipliers()
     {
+        let MultipliersBase=1;
+        let MultipliersSystem=1;
+        let MultipliersTrans=1;
+        let DefaultMults=1;
+        let multCount=2;
+        DefaultMults=itemAverage();
+        DefaultMults=DefaultMults*parseFloat(document.getElementsByClassName('H display')[0].innerHTML)*parseFloat(document.getElementsByClassName('Cc display')[0].innerHTML)*parseFloat(document.getElementsByClassName('Cd display')[0].innerHTML)/100;
+        let goldMulti=parseInt(document.getElementById('GoldPerZone').innerHTML)*document.getElementById('treasure').checked+parseInt(document.getElementById('GoldPerFive').innerHTML)*document.getElementById('clickable').checked;
+        //Loop through the checkboxes to get the multipliers the person is interested in.
+        for(let i=0; i<document.getElementsByClassName('box').length;  i++)
+        {   let thisCheckbox=document.getElementsByClassName('box')[i];
+            if(thisCheckbox.checked==1)
+            {   //we'll need to know the number of multipliers for the trans overall stat
+                multCount++;
+                MultipliersBase=MultipliersBase*(parseFloat(document.getElementsByClassName(thisCheckbox.classList[0]+' display')[0].innerHTML)/100);
+            }
+        }
+        //total multipliers per system
+        MultipliersSystem=MultipliersBase*DefaultMults;
+        //factor in gold based on which value was selected at top of page.
+        MultipliersSystem=parseInt(MultipliersSystem*goldMulti*3.6);
+        //writes it to the page
+        document.getElementById('mult_sys').innerHTML=MultipliersSystem;
+        //total multipliers per trans. As you are getting stat*asc, we can abreviate the math to be asc^multipliers
+        MultipliersTrans=MultipliersBase*DefaultMults*Math.pow(parseFloat(document.getElementById('asc_count').innerHTML),multCount);
+        //Boolean check for the multipliers to count for gold
+        let boolCheck=(2+document.getElementById('GB').checked*2)*document.getElementById('treasure').checked+(3+document.getElementById('GB').checked)*document.getElementById('clickable').checked;
+        MultipliersTrans=MultipliersTrans*goldMulti*Math.pow(parseFloat(document.getElementById('asc_count').innerHTML), boolCheck)*(1+3.6*document.getElementById('clickable').checked)
+        document.getElementById('mult_trans').innerHTML=MultipliersTrans;
 
+        //world difficulty
+        document.getElementById('systemdiff').innerHTML=Math.pow(1.16, document.getElementById('SystemEstimate').value*30)
+
+    }
+
+function writeDifficulty()
+    {
+        document.getElementById('systemdiff').innerHTML=Math.pow(1.16, document.getElementById('SystemEstimate').value*30)
     }
