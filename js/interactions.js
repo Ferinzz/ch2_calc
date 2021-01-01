@@ -6,6 +6,9 @@
    4. tab upgrades added
 */
 
+var estimatedSys=0;
+var currentCrumbs=1;
+var difficulty=1;
 
 //Import listener
 document.getElementsByClassName('Import')[0].addEventListener("mouseup", importTree, false)
@@ -16,33 +19,39 @@ function makeChangeChance()
 {
     document.getElementsByClassName(this.id+' display')[0].innerHTML=chance(this);
     WriteGoldMults()
+    collectMultipliers()
 }
 
 function makeChangeClickable()
 {
     document.getElementsByClassName(this.id+' display')[0].innerHTML=clickables(this);
     WriteGoldMults()
+    collectMultipliers()
 }
 
 function makeChangeHaste()
 {
     document.getElementsByClassName(this.id+' display')[0].innerHTML=Haste(this);
+    collectMultipliers()
 }
 
 function makeChangeLinear()
 {
     document.getElementsByClassName(this.id+' display')[0].innerHTML=linear(this);
     WriteGoldMults()
+    collectMultipliers()
 }
 
 function makeChangetenx()
 {
     document.getElementsByClassName(this.id+' display')[0].innerHTML=tenx(this);
+    collectMultipliers()
 }
 
 function makeChangeAa()
 {
     document.getElementsByClassName('Aa display')[0].innerHTML=aa(document.getElementById('Aa'));
+    collectMultipliers()
 }
 
 function makeChangePSDuration()
@@ -51,8 +60,8 @@ function makeChangePSDuration()
 }
 
 
-//input change listener
-
+//input change listener.
+//loop functions go through all the inputs of each type to add in the listeners.
 //Add listener for all  chance.
 for (let i = 0; i < document.getElementsByClassName('chance').length; i++) {
     const element = document.getElementsByClassName('chance');
@@ -111,7 +120,7 @@ Because of the structure of their objects... I have to search for a key to know 
 I COULD just redo a table based on the data, but this way if they update the tree I only need to 
 redo my file... Unless the structure changes.
 */
-function findKey(array, key, value) {
+function findKey(array, key) {
     for (var i = 0; i < array.length; i++) {
         if (Object.keys(array[i])[0] === key) {
             return i;
@@ -348,7 +357,7 @@ function collectMultipliers()
         //every build should include items crit chance and haste, so factoring these in by default.
         DefaultMults=itemAverage();
         DefaultMults=DefaultMults*parseFloat(document.getElementsByClassName('H display')[0].innerHTML)*parseFloat(document.getElementsByClassName('Cc display')[0].innerHTML)*parseFloat(document.getElementsByClassName('Cd display')[0].innerHTML)/100;
-
+        //the boolean 'checked' returns a 1 or 0. This provides a way to do a pseudo 'if' in the formula itself
         let goldMulti=parseInt(document.getElementById('GoldPerZone').innerHTML)*document.getElementById('treasure').checked+parseInt(document.getElementById('GoldPerFive').innerHTML)*document.getElementById('clickable').checked;
         //Loop through the checkboxes to get the multipliers the person is interested in.
         for(let i=0; i<document.getElementsByClassName('box').length;  i++)
@@ -362,21 +371,20 @@ function collectMultipliers()
         //total multipliers per system
         MultipliersSystem=MultipliersBase*DefaultMults;
         //factor in gold based on which value was selected at top of page.
-        MultipliersSystem=parseInt(MultipliersSystem*goldMulti*3.6);
+        MultipliersSystem=parseInt(MultipliersSystem*goldMulti*7.2);
         //writes it to the page
         document.getElementById('mult_sys').innerHTML=MultipliersSystem;
         //total multipliers per trans. As you are getting stat*asc, we can abreviate the math to be asc^multipliers
         MultipliersTrans=MultipliersBase*DefaultMults*Math.pow(parseFloat(document.getElementById('asc_count').innerHTML),multCount);
-        //account for the 
+        //account for the item multipliers.
         MultipliersTrans=MultipliersTrans*(Math.pow(parseFloat(document.getElementById('asc_count').innerHTML),8)/8)
-        //Boolean check for the multipliers to count for gold
-        //makes it so that I am increasing the power based on whether they are using clickable or treasure and if they have CV or GB
+        //Boolean check for the multipliers to count for gold. Similar to the one above
+        //makes it so that I am increasing the power based on whether they are using clickable or treasure and if they have CV or GB.
+        //CV adds 
         let boolCheck=(2+document.getElementById('GB').checked*2)*document.getElementById('treasure').checked+(3+document.getElementById('Click_Value').checked)*document.getElementById('clickable').checked;
-        MultipliersTrans=MultipliersTrans*goldMulti*Math.pow(parseFloat(document.getElementById('asc_count').innerHTML), boolCheck)*(1+3.6*document.getElementById('clickable').checked)
+        MultipliersTrans=MultipliersTrans*goldMulti*Math.pow(parseFloat(document.getElementById('asc_count').innerHTML), boolCheck)*(1+7.2*document.getElementById('clickable').checked)
         document.getElementById('mult_trans').innerHTML=MultipliersTrans;
 
-        //world difficulty
-        document.getElementById('systemdiff').innerHTML=Math.pow(1.16, document.getElementById('SystemEstimate').value*30)
 
     }
 
@@ -384,3 +392,147 @@ function writeDifficulty()
     {
         document.getElementById('systemdiff').innerHTML=Math.pow(1.16, document.getElementById('SystemEstimate').value*30)
     }
+
+    
+        //Crumbs multiplier
+        //sum of crumbs gained per system will be the easiest assumption, so it goes up to the completion of the estimated system.
+        //systemx30 in total. 
+        //As this is the sum of each world, there needs to be a loop... yay? Another option is that once this is done once, I can make it only update when the system count changes. with a + or - of the current value.
+function systemValues()
+    {
+        let diff=document.getElementById('SystemEstimate').value*30-estimatedSys*30;
+        console.log(diff);
+        if(diff>0)
+        {for(let i=estimatedSys*30+1; i<document.getElementById('SystemEstimate').value*30; i++)
+            {
+                currentCrumbs=currentCrumbs+Math.pow(1.1, i);
+            }
+        }
+        else
+        {
+            for(let i=estimatedSys*30-1;i>document.getElementById('SystemEstimate').value*30;i--)
+            {
+                currentCrumbs=currentCrumbs-Math.pow(1.1, i);
+            }
+        }
+        document.getElementById('crumbsMult').innerHTML=currentCrumbs/10+1;
+        
+        //getting difficulty
+
+        if(diff>0)
+        {for(let i=estimatedSys*30+1; i<document.getElementById('SystemEstimate').value*30; i++)
+            {
+                difficulty=difficulty*1.16;
+                console.log('ran');
+            }
+        }
+        else
+        {
+            for(let i=estimatedSys*30-1;i>document.getElementById('SystemEstimate').value*30;i--)
+            {
+                difficulty=difficulty/1.16;
+                console.log('ran');
+            }
+        }
+        estimatedSys=document.getElementById('SystemEstimate').value
+        document.getElementById('systemdiff').innerHTML=difficulty
+    }
+
+
+    function fullTree()
+    {  clearInputs()
+       //First we need the reference file... It be big(92KB) so many clients would cringe... Maybe just have this as a constant imported on load I guess.
+    
+       //"imports" the string and separates into an array at every &
+       //We now have an array of all the nodes that have been selected. Easy to iterate over.
+       //forEach() is a fast easy way to iterate over the whole array and call another function
+       //Order doesn't matter, but sorting the array requires reading it multiple times and modifying it each time
+       //Less calcs to just find the object
+       reference.nodes.forEach(element => {
+          //write the increment function here
+          //This should increment each input.value by the node level
+          //step one get val based on reference and determine the input to modify as well as how much based on val
+          switch (element[Object.keys(element)].val) {
+             case "G":
+             case "Cc":
+             case "Cd":
+             case "H":
+             case "Gc":
+             case "Cl":
+             case "Gb":
+             case "Ir":
+             case "Mt":
+             case "Mr":
+             case "En":
+             case "Gp":
+             case "Bg":
+             case "Tc":
+             case "Tg":
+             case "I1":
+             case "I2":
+             case "I3":
+             case "I4":
+             case "I5":
+             case "I6":
+             case "I7":
+             case "I8":
+             case "Mu":
+             case "Bc":
+             case "Bd":
+             case "Hd":
+             case "Md":
+             case "Ea":
+             case "Pt":
+             case "Pa":
+             case "Ra":
+             case "Aa":
+                {//document.getElementById(reference.nodes[element-1][element].val).stepUp()
+                   idName=element[Object.keys(element)].val;
+                document.getElementById(idName).stepUp();
+                }
+                break;
+             case "qG":
+             case "qCc":
+             case "qCd":
+             case "qH":
+             case "qGc":
+             case "qCl":
+             case "qGb":
+             case "qIr":
+             case "qMr":
+             case "qEn":
+             case "qGp":
+             case "qBg":
+             case "qTc":
+             case "qTg":
+             case "qMu":
+             case "qBc":
+             case "qBd":
+             case "qHd":
+             case "qMd":
+                {//document.getElementById(reference.nodes[element-1][element].val).stepUp()
+                   idName=element[Object.keys(element)].val.slice(1);
+                   document.getElementById(idName).stepUp(3);
+                   }
+                break;
+                case "qMt":
+                   {//document.getElementById(reference.nodes[element-1][element].val).stepUp()
+                      idName=element[Object.keys(element)].val.slice(1);
+                      document.getElementById(idName).stepUp(4);
+                      }
+             default:
+                break;
+          }
+       
+       
+ 
+ 
+        });
+     
+        
+        //Used to get the total points spent to build the tree. each node is one value in the array
+        Sp=reference.nodes.length;
+        //calls the function which will call the refresh and count total values.
+        refreshLoop(total=0,Sp)
+        return;
+     }
