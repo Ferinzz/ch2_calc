@@ -235,13 +235,8 @@ function collectMultipliers()
 
 /*
 Things needed to factor in
-1. Damage type
-gold type
 2. multiple imports?
-4. Account for node level ups? (yuck, thanks god this is going away)
-5. Multiple ascension overall multipliers
  imp asc points 'lost'
- add in new variable to store node counts?
  change storage to straight object?
 
 */

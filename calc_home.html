@@ -3,15 +3,9 @@
 <header>
 </header>
 <!-- buttons to add.
-1. import
 2. clear
 toggles to add
-1. ticks for each value (calc efficiency)
-2. glorious bounty etc.
 3. precision mode
-4. KE
-5. damage type
-gold type
 Structure change
 1. Add in Grid structure
 2. add numbers to the classes to prepare for multiple imports
@@ -33,49 +27,47 @@ Structure change
     <div><label><input type='checkbox' id='Click_Value'>Clickable Value?</label> (chest stats impact clickable multipliers)</div>
     <div><label><input type='checkbox' id='GB'>Glorious Bounty?</label> (EVERYTHING affects chests)</div>
     <div id="gold_type"><label><input type="radio" name="damage_type" id="click" checked>click</input></label><label><input type="radio" name="damage_type" id="auto">Aa</input></label> (What's the damage?) </div>
-
     <div><label><input type='checkbox' id='KEActive'>Kinetic Energy?</label> (AA^4)</div>
     
 </br>
     <div>Stats</div>
-    <div><label><input type='checkbox' class='Cl box click'> Click Damage:	</label><span class='Cl display'>_</span>%	<input class='linear nodeLvl' type="number" id='Cl' Value="0" /> extra node level : </div>
-    <div><label><input type='checkbox' class='Aa box'> Auto Attack Damage:	</label><span class='Aa display'>_</span>%	<input class='aa nodeLvl' type="number" id='Aa' Value="0"/> extra node level : </div>
-    <div><label>Critical Chance:	</label><span class='Cc display'>_</span>%	<input class='chance nodeLvl' type="number" id='Cc' Value="0" /> extra node level : </div>
-    <div><label>Critical Damage Multiplier:	</label><span class='Cd display'>_</span>%	<input class='linear nodeLvl' type="number" id='Cd' Value="0" /> extra node level : </div>
-    <div><label>Haste:	</label><span class='H display'>_</span>	<input type="number" class='nodeLvl' id='H' Value="0" /> extra node level : </div>
-    <div><label>Gold Received:	</label><span class='G display'>_</span>%	<input class='linear nodeLvl' type="number" id='G' Value="0"/> extra node level : </div>
-    <div><label>Monster Gold:	</label><span class='Gb display'>_</span>%	<input class='linear nodeLvl' type="number" id='Gb' Value="0" /> extra node level : </div>
-    <div><label>Bonus Gold Chance (×10):	</label><span class='Bg display'>_</span>%	<input class='chance nodeLvl' type="number" id='Bg' Value="0" /> extra node level : </div>
-    <div><label>Clickable Chance:	</label><span class='Gp display'>_</span>%	<input class='nodeLvl' type="number" id='Gp' Value="0"/> extra node level : </div>
-    <div><label>Clickable Gold:	</label><span class='Gc display'>_</span>%	<input class='linear nodeLvl' type="number" id='Gc' Value="0" /> extra node level : </div>
-    <div><label>Treasure Chest Chance:	</label><span class='Tc display'>_</span>%	<input class='chance nodeLvl' type="number" id='Tc' Value="0" /> extra node level : </div>
-    <div><label>Treasure Chest Gold:	</label><span class='Tg display'>_</span>%	<input class='linear nodeLvl' type="number" id='Tg' Value="0"/> extra node level : </div>
-    <div>Item Cost Reduction:	<span class='Ir display'>_</span>%	<input class='chance nodeLvl' type="number" id='Ir' Value="0" /> extra node level : </div>
-
-    <div><label>Total Energy:	</label><span class="En display">_</span>	<input class='10x nodeLvl' type="number" id='En' Value="0" /> extra node level : </div>
-    <div><label>Total Mana:	</label><span class="Mt display">_</span>	<input class='10x nodeLvl' type="number" id='Mt' Value="0" /> extra node level : </div>
-    <div><label>Mana Regeneration:	</label><span class='Mr display'>_</span>%	<input class='linear nodeLvl' type="number" id='Mr' Value="0" /> extra node level : </div>
+    <div><label><input type='checkbox' class='Cl box click'> Click Damage:	</label><span class='Cl display'>_</span>%	<input class='linear nodeLvl' type="number" id='Cl' Value="0" /></div>
+    <div><label><input type='checkbox' class='Aa box'> Auto Attack Damage:	</label><span class='Aa display'>_</span>%	<input class='aa nodeLvl' type="number" id='Aa' Value="0"/></div>
+    <div><label>Critical Chance:	</label><span class='Cc display'>_</span>%	<input class='chance nodeLvl' type="number" id='Cc' Value="0" /></div>
+    <div><label>Critical Damage Multiplier:	</label><span class='Cd display'>_</span>%	<input class='linear nodeLvl' type="number" id='Cd' Value="0" /></div>
+    <div><label>Haste:	</label><span class='H display'>_</span>	<input type="number" class='nodeLvl' id='H' Value="0" /></div>
+    <div><label>Gold Received:	</label><span class='G display'>_</span>%	<input class='linear nodeLvl' type="number" id='G' Value="0"/></div>
+    <div><label>Monster Gold:	</label><span class='Gb display'>_</span>%	<input class='linear nodeLvl' type="number" id='Gb' Value="0" /></div>
+    <div><label>Bonus Gold Chance (×10):	</label><span class='Bg display'>_</span>%	<input class='chance nodeLvl' type="number" id='Bg' Value="0" /></div>
+    <div><label>Clickable Chance:	</label><span class='Gp display'>_</span>%	<input class='nodeLvl' type="number" id='Gp' Value="0"/></div>
+    <div><label>Clickable Gold:	</label><span class='Gc display'>_</span>%	<input class='linear nodeLvl' type="number" id='Gc' Value="0" /></div>
+    <div><label>Treasure Chest Chance:	</label><span class='Tc display'>_</span>%	<input class='chance nodeLvl' type="number" id='Tc' Value="0" /></div>
+    <div><label>Treasure Chest Gold:	</label><span class='Tg display'>_</span>%	<input class='linear nodeLvl' type="number" id='Tg' Value="0"/></div>
+    <div>Item Cost Reduction:	<span class='Ir display'>_</span>%	<input class='chance nodeLvl' type="number" id='Ir' Value="0" /></div>
+    <div><label>Total Energy:	</label><span class="En display">_</span>	<input class='10x nodeLvl' type="number" id='En' Value="0" /></div>
+    <div><label>Total Mana:	</label><span class="Mt display">_</span>	<input class='10x nodeLvl' type="number" id='Mt' Value="0" /></div>
+    <div><label>Mana Regeneration:	</label><span class='Mr display'>_</span>%	<input class='linear nodeLvl' type="number" id='Mr' Value="0" /></div>
 </br>
     <div><label>Item Mods</label></div>
-    <div> Weapon Damage:	<span class="I1 items display">_</span>%	<input class='10x nodeLvl' type="number" id='I1' Value="0" /> extra node level : </div>
-    <div> Helmet Damage:	<span class="I2 items display">_</span>%	<input class='10x nodeLvl' type="number" id='I2' Value="0" /> extra node level : </div>
-    <div> Breastplate Damage:	<span class="I3 items display">_</span>%	<input class='10x nodeLvl' type="number" id='I3' Value="0" /> extra node level : </div>
-    <div> Ring Damage:	<span class="I4 items display">_</span>%	<input class='10x nodeLvl' type="number" id='I4' Value="0"/> extra node level : </div>
-    <div> Pants Damage:	<span class="I5 items display">_</span>%	<input class='10x nodeLvl' type="number" id='I5' Value="0" /> extra node level : </div>
-    <div> Gloves Damage:	<span class="I6 items display">_</span>%	<input class='10x nodeLvl' type="number" id='I6' Value="0" /> extra node level : </div>
-    <div> Boots Damage:	<span class="I7 items display">_</span>%	<input class='10x nodeLvl' type="number" id='I7' Value="0" /> extra node level : </div>
-    <div> Cape Damage:	<span class="I8 items display">_</span>%	<input class='10x nodeLvl' type="number" id='I8' Value="0" /> extra node level : </div>
+    <div> Weapon Damage:	<span class="I1 items display">_</span>%	<input class='10x nodeLvl' type="number" id='I1' Value="0" /></div>
+    <div> Helmet Damage:	<span class="I2 items display">_</span>%	<input class='10x nodeLvl' type="number" id='I2' Value="0" /></div>
+    <div> Breastplate Damage:	<span class="I3 items display">_</span>%	<input class='10x nodeLvl' type="number" id='I3' Value="0" /></div>
+    <div> Ring Damage:	<span class="I4 items display">_</span>%	<input class='10x nodeLvl' type="number" id='I4' Value="0"/></div>
+    <div> Pants Damage:	<span class="I5 items display">_</span>%	<input class='10x nodeLvl' type="number" id='I5' Value="0" /></div>
+    <div> Gloves Damage:	<span class="I6 items display">_</span>%	<input class='10x nodeLvl' type="number" id='I6' Value="0" /></div>
+    <div> Boots Damage:	<span class="I7 items display">_</span>%	<input class='10x nodeLvl' type="number" id='I7' Value="0" /></div>
+    <div> Cape Damage:	<span class="I8 items display">_</span>%	<input class='10x nodeLvl' type="number" id='I8' Value="0" /></div>
 </br>
     Traits (aka skills)</br>
-    <div><label>Increased MultiClicks:	</label><span class="Mu display">_</span>	<input class="singles nodeLvl" type="number" id='Mu' Value="0" /> extra node level : </div>
-    <div><label>More Big Clicks:	</label><span class="Bc display">_</span>	<input class="singles nodeLvl" type="number" id='Bc' Value="0" /> extra node level : </div>
-    <div><label><input type='checkbox' class='Bd box click'> Bigger Big Clicks:	</label><span class='Bd display'>_</span>%	<input class='linear nodeLvl' type="number" id='Bd' Value="0" /> extra node level : </div>
-    <div>Improved Energize: <span class="Ea display">_</span>%	<input class='10x nodeLvl' type="number" id='Ea' Value="0" /> extra node level : </div>
-    <div><label><input type='checkbox' class='Hd box click'> Huger Huge Click:	</label><span class='Hd display'>_</span>%	<input class='linear nodeLvl' type="number" id='Hd' Value="0" /> extra node level : </div>
-    <div>Sustained Powersurge:	<span class="Pt display">_</span>s	<input class='PSduration nodeLvl' type="number" id='Pt' Value="0"/> extra node level : </div>
-    <div><label><input type='checkbox' class='Md box click'> Mana Crit Damage:	</label><span class='Md display'>_</span>%	<input class='linear nodeLvl' type="number" id='Md' Value="0" /> extra node level : </div>
-    <div><label><input type='checkbox' class='Pa box click'> Improved Powersurge:	</label><span class='Pa display'>_</span>%	<input class='linear nodeLvl' type="number" id='Pa' Value="0" /> extra node level : </div>
-    <div><label>Reload Energy and Mana:	</label><span class="Ra display">_</span>	<input class='10x nodeLvl' type="number" id='Ra' Value="0" /> extra node level : </div>
+    <div><label>Increased MultiClicks:	</label><span class="Mu display">_</span>	<input class="singles nodeLvl" type="number" id='Mu' Value="0" /></div>
+    <div><label>More Big Clicks:	</label><span class="Bc display">_</span>	<input class="singles nodeLvl" type="number" id='Bc' Value="0" /></div>
+    <div><label><input type='checkbox' class='Bd box click'> Bigger Big Clicks:	</label><span class='Bd display'>_</span>%	<input class='linear nodeLvl' type="number" id='Bd' Value="0" /></div>
+    <div>Improved Energize: <span class="Ea display">_</span>%	<input class='10x nodeLvl' type="number" id='Ea' Value="0" /></div>
+    <div><label><input type='checkbox' class='Hd box click'> Huger Huge Click:	</label><span class='Hd display'>_</span>%	<input class='linear nodeLvl' type="number" id='Hd' Value="0" /></div>
+    <div>Sustained Powersurge:	<span class="Pt display">_</span>s	<input class='PSduration nodeLvl' type="number" id='Pt' Value="0"/></div>
+    <div><label><input type='checkbox' class='Md box click'> Mana Crit Damage:	</label><span class='Md display'>_</span>%	<input class='linear nodeLvl' type="number" id='Md' Value="0" /></div>
+    <div><label><input type='checkbox' class='Pa box click'> Improved Powersurge:	</label><span class='Pa display'>_</span>%	<input class='linear nodeLvl' type="number" id='Pa' Value="0" /></div>
+    <div><label>Reload Energy and Mana:	</label><span class="Ra display">_</span>	<input class='10x nodeLvl' type="number" id='Ra' Value="0" /></div>
 
     <div>Total points gained: <span class="Total"></span></div>
     <div>Total points spent: <span class="Sp"></span> (You gain 150 points per system +6 +improved ascension on ascend)</div>

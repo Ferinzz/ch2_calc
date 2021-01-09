@@ -1,9 +1,6 @@
 /* Listeners needed:
     clear
-   1. imp asc change
-   2. system change
    3. node levels added
-   4. tab upgrades added
 */
 
 var estimatedSys=0;
@@ -348,10 +345,6 @@ function findKey(array, key) {
  document.getElementsByClassName("Sp")[0].innerHTML = Sp;
  ascensions();
  WriteGoldMults();
- document.getElementsByClassName("Total")[0].innerHTML = total;
- document.getElementsByClassName("Sp")[0].innerHTML = Sp;
- ascensions();
- collectMultipliers();
 
  }
  
@@ -398,12 +391,12 @@ function WriteGoldMults(){
 
 
 
-
     
         //Crumbs multiplier
         //sum of crumbs gained per system will be the easiest assumption, so it goes up to the completion of the estimated system.
         //systemx30 in total. 
         //As this is the sum of each world, there needs to be a loop... yay? Another option is that once this is done once, I can make it only update when the system count changes. with a + or - of the current value.
+
 
     //cycle over the entire node list from the reference and output the fully allocated skill tree string
     //this is modified loop from the importTree
@@ -508,4 +501,3 @@ function WriteGoldMults(){
 
      importTree()
      //&2&3&4&6&5&14&11&8&7&33&50&51&194&201&199&146&190&191&192&143&210&209&208&207&148&15&37&52&53&228&226&147&237&270&234&235&274&153&202&175&181&141&240&243&245&216&157&220&219&218&272&271&158&277&156&217&213&182&152&206&203&259&250&248&254&255&133&253&134&196&195&131&186&279&135&372&409&403&295&340&367&339&314&368&343&390&313&380&386&385&440&391&344&331&315&12&30&48&49&124&79&80&659&81&108&643&105&120&447&450&644&645&290&451&627&656&71&469&628&629&97&449&95&94&461&66&70&69&658&467&67&65&64&460&113&121&91&281&453&93&92&442&90&62&110&112&445&211&212&138&214&251&111&107&102&106&468
-
