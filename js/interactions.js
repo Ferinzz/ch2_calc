@@ -7,8 +7,8 @@
 */
 
 var estimatedSys=0;
-var multiplier=BigInt(Math.pow(116,30))
-var divider=BigInt(Math.pow(100,30))
+var multiplier=116n;
+var divider=100n;
 
 //Import listener
 document.getElementsByClassName('Import')[0].addEventListener("mouseup", importTree, false)
@@ -18,40 +18,40 @@ document.getElementsByClassName('Import')[0].addEventListener("mouseup", importT
 function makeChangeChance()
 {
     document.getElementsByClassName(this.id+' display')[0].innerHTML=chance(this);
-    WriteGoldMults()
-    collectMultipliers()
+    WriteGoldMults();
+    collectMultipliers();
 }
 
 function makeChangeClickable()
 {
     document.getElementsByClassName(this.id+' display')[0].innerHTML=clickables(this);
-    WriteGoldMults()
-    collectMultipliers()
+    WriteGoldMults();
+    collectMultipliers();
 }
 
 function makeChangeHaste()
 {
     document.getElementsByClassName(this.id+' display')[0].innerHTML=Haste(this);
-    collectMultipliers()
+    collectMultipliers();
 }
 
 function makeChangeLinear()
 {
     document.getElementsByClassName(this.id+' display')[0].innerHTML=linear(this);
-    WriteGoldMults()
-    collectMultipliers()
+    WriteGoldMults();
+    collectMultipliers();
 }
 
 function makeChangetenx()
 {
     document.getElementsByClassName(this.id+' display')[0].innerHTML=tenx(this);
-    collectMultipliers()
+    collectMultipliers();
 }
 
 function makeChangeAa()
 {
     document.getElementsByClassName('Aa display')[0].innerHTML=aa(document.getElementById('Aa'));
-    collectMultipliers()
+    collectMultipliers();
 }
 
 function makeChangePSDuration()
@@ -65,33 +65,76 @@ function makeChangePSDuration()
 //Add listener for all  chance.
 for (let i = 0; i < document.getElementsByClassName('chance').length; i++) {
     const element = document.getElementsByClassName('chance');
-    document.getElementsByClassName('chance')[i].addEventListener("input", makeChangeChance, false) 
+    document.getElementsByClassName('chance')[i].addEventListener("input", makeChangeChance, false) ;
 }
 
-document.getElementById('Gp').addEventListener("input", makeChangeClickable, false) 
-document.getElementById('H').addEventListener("input", makeChangeHaste, false) 
+document.getElementById('Gp').addEventListener("input", makeChangeClickable, false) ;
+document.getElementById('H').addEventListener("input", makeChangeHaste, false) ;
 
 //Add listener for all linear changes.
 for (let i = 0; i < document.getElementsByClassName('linear').length; i++) {
     const element = document.getElementsByClassName('linear');
-    document.getElementsByClassName('linear')[i].addEventListener("input", makeChangeLinear, false) 
+    document.getElementsByClassName('linear')[i].addEventListener("input", makeChangeLinear, false) ;
 }
 //Add listener for all 10x changes.
 for (let i = 0; i < document.getElementsByClassName('10x').length; i++) {
     const element = document.getElementsByClassName('10x');
-    document.getElementsByClassName('10x')[i].addEventListener("input", makeChangetenx, false) 
+    document.getElementsByClassName('10x')[i].addEventListener("input", makeChangetenx, false) ;
 }
 
 
-document.getElementById('Aa').addEventListener("input", makeChangeAa, false) 
-document.getElementById('Pt').addEventListener("input", makeChangePSDuration, false) 
+document.getElementById('Aa').addEventListener("input", makeChangeAa, false) ;
+document.getElementById('Pt').addEventListener("input", makeChangePSDuration, false) ;
 
 
-document.getElementById('Click_Value').addEventListener("input", WriteGoldMults, false) 
-document.getElementById('GB').addEventListener("input", WriteGoldMults, false) 
-document.getElementById('KEActive').addEventListener("input", makeChangeAa, false) 
+document.getElementById('SystemEstimate').addEventListener('input', sysChange, false);
+document.getElementById('ImpAscend').addEventListener('input', sysChange, false);
+function sysChange()
+    {
+        ascensions();
+        collectMultipliers();
+        systemValues();
+    }
 
 
+document.getElementsByName('gold_type')[0].addEventListener('change', collectMultipliers, false);
+document.getElementsByName('gold_type')[1].addEventListener('change', collectMultipliers, false);
+document.getElementById('Click_Value').addEventListener("input", WriteGoldMults, false) ;
+document.getElementById('GB').addEventListener("input", WriteGoldMults, false) ;
+document.getElementById('KEActive').addEventListener("input", makeChangeAa, false) ;
+
+document.getElementsByName('damage_type')[0].addEventListener('change', damageSelect, false);
+document.getElementsByName('damage_type')[1].addEventListener('change', damageSelect, false);
+
+function damageSelect()
+{
+    if(document.getElementById('auto').checked==false)
+        {document.getElementsByClassName('Aa box')[0].checked=false;
+        document.getElementsByClassName('Aa box')[0].indeterminate=true;
+        for(let i=0; i<document.getElementsByClassName('click').length; i++)  {
+            document.getElementsByClassName('click')[i].indeterminate=false;
+        }}
+   else{let ClickList=document.getElementsByClassName('click');
+        for(let i=0; i<document.getElementsByClassName('click').length; i++)  {
+            document.getElementsByClassName('click')[i].checked=false;
+            document.getElementsByClassName('click')[i].indeterminate=true;
+        }
+        
+            document.getElementsByClassName('Aa box')[0].indeterminate=false;
+        }
+        
+}
+damageSelect()
+for (let i = 0; i < document.getElementsByClassName('box').length; i++) {
+    const box = document.getElementsByClassName('box')[i];
+    document.getElementsByClassName('box')[i].addEventListener('input', changeSelects, false)
+    
+}
+function changeSelects()
+{   
+    damageSelect();
+    collectMultipliers();
+}
 /*
 Values reference nodes individually, which will reference the key of an object
 1&2&3&4&6&5&14&8&11&7&33&50&51&194&201&199&146&190&191&192&143&210&209
@@ -227,6 +270,7 @@ function findKey(array, key) {
     Sp=mySkillTree.length;
     //calls the function which will call the refresh and count total values.
     refreshLoop(total=0,Sp)
+    systemValues();
     return;
  }
  
@@ -300,6 +344,9 @@ function findKey(array, key) {
      document.getElementsByClassName('H display')[0].innerHTML=Haste(node);
      total+=parseInt(node.value);
  
+ document.getElementsByClassName("Total")[0].innerHTML = total;
+ document.getElementsByClassName("Sp")[0].innerHTML = Sp;
+ ascensions();
  WriteGoldMults();
  document.getElementsByClassName("Total")[0].innerHTML = total;
  document.getElementsByClassName("Sp")[0].innerHTML = Sp;
@@ -321,6 +368,7 @@ function WriteGoldMults(){
     var gold=goldMult()
     document.getElementById("GoldPerZone").innerHTML = gold[0];
     document.getElementById("GoldPerFive").innerHTML = gold[1];
+    collectMultipliers();
     
     }
  
@@ -347,135 +395,15 @@ function WriteGoldMults(){
        }
     }
 
-function collectMultipliers()
-    {
-        let MultipliersBase=1;
-        let MultipliersSystem=1;
-        let MultipliersTrans=1;
-        let DefaultMults=1;
-        let multCount=2;
-        //every build should include items crit chance and haste, so factoring these in by default.
-        DefaultMults=itemAverage();
-        DefaultMults=DefaultMults*parseFloat(document.getElementsByClassName('H display')[0].innerHTML)*parseFloat(document.getElementsByClassName('Cc display')[0].innerHTML)*parseFloat(document.getElementsByClassName('Cd display')[0].innerHTML)/100;
-        //the boolean 'checked' returns a 1 or 0. This provides a way to do a pseudo 'if' in the formula itself
-        let goldMulti=parseInt(document.getElementById('GoldPerZone').innerHTML)*document.getElementById('treasure').checked+parseInt(document.getElementById('GoldPerFive').innerHTML)*document.getElementById('clickable').checked;
-        //Loop through the checkboxes to get the multipliers the person is interested in.
-        for(let i=0; i<document.getElementsByClassName('box').length;  i++)
-        {   let thisCheckbox=document.getElementsByClassName('box')[i];
-            if(thisCheckbox.checked==1)
-            {   //we'll need to know the number of multipliers for the trans overall stat
-                multCount++;
-                MultipliersBase=MultipliersBase*(parseFloat(document.getElementsByClassName(thisCheckbox.classList[0]+' display')[0].innerHTML)/100);
-            }
-        }
-        //total multipliers per system
-        MultipliersSystem=MultipliersBase*DefaultMults;
-        //factor in gold based on which value was selected at top of page.
-        MultipliersSystem=parseInt(MultipliersSystem*goldMulti*7.2);
-        //writes it to the page
-        document.getElementById('mult_sys').innerHTML=MultipliersSystem;
-        //total multipliers per trans. As you are getting stat*asc, we can abreviate the math to be asc^multipliers
-        MultipliersTrans=MultipliersBase*DefaultMults*Math.pow(parseFloat(document.getElementById('asc_count').innerHTML),multCount);
-        //account for the item multipliers.
-        MultipliersTrans=MultipliersTrans*(Math.pow(parseFloat(document.getElementById('asc_count').innerHTML),8))
-
-        //Boolean check for the multipliers to count for gold. Similar to the one above
-        //makes it so that I am increasing the power based on whether they are using clickable or treasure and if they have CV or GB.
-        //CV adds 
-        let boolCheck=(2+document.getElementById('GB').checked*2)*document.getElementById('treasure').checked+(3+document.getElementById('Click_Value').checked)*document.getElementById('clickable').checked;
-        MultipliersTrans=MultipliersTrans*goldMulti*Math.pow(parseFloat(document.getElementById('asc_count').innerHTML), boolCheck)*(1+7.2*document.getElementById('clickable').checked)
-        document.getElementById('mult_trans').innerHTML=MultipliersTrans;
 
 
-    }
 
-function writeDifficulty()
-    {
-        document.getElementById('systemdiff').innerHTML=Math.pow(1.16, document.getElementById('SystemEstimate').value*30)
-    }
 
     
         //Crumbs multiplier
         //sum of crumbs gained per system will be the easiest assumption, so it goes up to the completion of the estimated system.
         //systemx30 in total. 
         //As this is the sum of each world, there needs to be a loop... yay? Another option is that once this is done once, I can make it only update when the system count changes. with a + or - of the current value.
-function systemValues()
-    {
-        
-        let currentCrumbs=BigInt(1);
-        let difficulty=BigInt(1);
-        let diff=document.getElementById('SystemEstimate').value*30-estimatedSys*30;
-        let system=document.getElementById('SystemEstimate').value;
-        let worldCrumb=BigInt(11);
-        let worldMult=BigInt(10);
-        console.log(diff);
-        //crumb per world calculation
-        //10(1.1^world - 1.1^(world -1))
-        //this is a sequende, therefore n/2(a1+an)
-        //a1 is always 1; an is the gains from the last world = 10(1.1^world - 1.1^(world -1))
-        //I want to use BigInt, therefore 'simplified' to (11^n-11^(n-1))/10^(n-1)
-        //calculating 11^(n-1) and 10^(n-1)
-        
-                worldCrumb=worldCrumb**(BigInt(system)*30n-1n)
-                worldMult=worldMult**(BigInt(system)*30n-1n)
-
-            console.log(BigInt(system)*30n)
-        //Now we have the base stats and we can plug them into the formula
-        currentCrumbs=((worldCrumb*11n-worldCrumb)/worldMult)
-
-
-        /*
-        else
-        {
-            for(let j=estimatedSys*30-1;j>document.getElementById('SystemEstimate').value*30-1;j--)
-            {   
-                currentCrumbs=currentCrumbs-10*(Math.pow(1.1, j)-Math.pow(1.1, j-1));
-            }
-        }*/
-        currentCrumbs=currentCrumbs/10n+1n
-        document.getElementById('crumbsMult').innerHTML=currentCrumbs;
-        
-        //getting difficulty
-        //if(difficulty>3000)
-        //{   difficulty=BigInt(difficulty)
-            //if(diff>0)
-        //{
-            let dividerer=BigInt(1)
-            for(let i=0; i<system; i++)
-            {   
-                difficulty=difficulty*multiplier;
-                dividerer=dividerer*divider;
-            }
-            difficulty=difficulty/dividerer;
-        /*}
-        else
-        {
-            for(let i=estimatedSys*30;i>document.getElementById('SystemEstimate').value*30;i--)
-            {
-                difficulty=difficulty/116n;
-                //difficulty=difficulty*100n;
-
-            }
-        }*/
-        //}
-        /*else{
-        if(diff>0)
-        {for(let i=estimatedSys*30; i<document.getElementById('SystemEstimate').value*30; i++)
-            {
-                difficulty=difficulty*1.16;
-            }
-        }
-        else
-        {
-            for(let i=estimatedSys*30;i>document.getElementById('SystemEstimate').value*30;i--)
-            {
-                difficulty=difficulty/1.16;
-            }
-        }}*/
-        estimatedSys=document.getElementById('SystemEstimate').value
-        document.getElementById('systemdiff').innerHTML=difficulty;
-        //Number.parseFloat(difficulty).toExponential(2)
-    }
 
     //cycle over the entire node list from the reference and output the fully allocated skill tree string
     //this is modified loop from the importTree
@@ -484,8 +412,6 @@ function systemValues()
        //First we need the reference file... It be big(92KB) so many clients would cringe... Maybe just have this as a constant imported on load I guess.
     
        let fullstring='';
-       //"imports" the string and separates into an array at every &
-       //We now have an array of all the nodes that have been selected. Easy to iterate over.
        //forEach() is a fast easy way to iterate over the whole array and call another function
        //Order doesn't matter, but sorting the array requires reading it multiple times and modifying it each time
        //Less calcs to just find the object
@@ -579,3 +505,7 @@ function systemValues()
         console.log(fullstring);
         return;
      }
+
+     importTree()
+     //&2&3&4&6&5&14&11&8&7&33&50&51&194&201&199&146&190&191&192&143&210&209&208&207&148&15&37&52&53&228&226&147&237&270&234&235&274&153&202&175&181&141&240&243&245&216&157&220&219&218&272&271&158&277&156&217&213&182&152&206&203&259&250&248&254&255&133&253&134&196&195&131&186&279&135&372&409&403&295&340&367&339&314&368&343&390&313&380&386&385&440&391&344&331&315&12&30&48&49&124&79&80&659&81&108&643&105&120&447&450&644&645&290&451&627&656&71&469&628&629&97&449&95&94&461&66&70&69&658&467&67&65&64&460&113&121&91&281&453&93&92&442&90&62&110&112&445&211&212&138&214&251&111&107&102&106&468
+
