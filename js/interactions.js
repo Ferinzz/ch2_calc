@@ -89,7 +89,7 @@ document.getElementById('ImpAscend').addEventListener('input', sysChange, false)
 function sysChange()
     {
         ascensions();
-        refreshLoop();
+        refreshLoop(document.getElementsByClassName('Total')[0].innerHTML,document.getElementsByClassName('Sp')[0].innerHTML);
         systemValues();
     }
 
